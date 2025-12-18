@@ -59,6 +59,9 @@ export async function getCurrentUser() {
 }
 
 export async function refreshToken() {
-    const { data } = await http.get<RefreshResponse>(ENDPOINTS.refresh);
+     const refreshToken = localStorage.getItem("refreshToken");
+     if (!refreshToken) throw new Error("No refresh token");
+
+    const { data } = await http.get<RefreshResponse>(ENDPOINTS.refresh, {params: { refreshToken }});
     return data
 }

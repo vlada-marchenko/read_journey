@@ -59,6 +59,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     (async () => {
       try {
+        const rt = localStorage.getItem("refreshToken");
+        if (!rt) {
+          setLoading(false);
+          return;
+        }
+
         const refreshed = await refreshToken(); // backend return new access token and refresh token
         saveTokens(refreshed.token, refreshed.refreshToken); // save new tokens to localStorage
         const currentUser = await getCurrentUser(); // needs bearer and backend return user data
@@ -117,7 +123,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <AuthContext.Provider value={value}>
-      {!loading && children}
+      {children}
     </AuthContext.Provider>
   );
 }

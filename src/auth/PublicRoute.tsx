@@ -8,9 +8,10 @@ export default function ProtectedRoute({ children }: { children: React.ReactNode
         return <div>Loading...</div>;
     }
 
+    return <>{children}</>;
+
     if (!token) {
         return <Navigate to="/recommended" replace />;
     }
 
-    return <>{children}</>;
 }
