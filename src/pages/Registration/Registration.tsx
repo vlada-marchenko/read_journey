@@ -1,6 +1,5 @@
-// import { yupResolver } from '@hookform/resolvers/yup'
+
 import * as yup from "yup";
-// import Icon from 'src/components/Icon/Icon'
 import css from "./Registration.module.css";
 import type { RegisterData } from "../../api/auth";
 import { toast } from "react-toastify";
@@ -10,6 +9,7 @@ import type { FormikHelpers } from "formik";
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import Icon from "../../components/Icon/Icon";
 import { useState } from "react";
+import Phone from "../../components/Phone/Phone";
 
 const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
@@ -60,6 +60,7 @@ export function Registration() {
   };
   return (
     <div className={css.container}>
+              <div className={css.window}>
       <Icon name="logo" className={css.icon} width={182} height={17} />
       <Icon name="logo-mob" className={css.icon_mob} width={42} height={17} />
       <h1 className={css.title}>
@@ -73,94 +74,119 @@ export function Registration() {
         validateOnChange
       >
         {({ isSubmitting, errors, touched }) => {
-            const passError = touched.password && !!errors.password;
-            const passSuccess = touched.password && !errors.password;
-            return (
-          <Form className={css.form}>
-            <div className={css.field}>
-              <Field
-                id="name"
-                name="name"
-                placeholder=" "
-                className={`${css.input} ${css.inputName}`}
-              />
-              <label htmlFor="name" className={css.label}>
-                Name:
-              </label>
-              <ErrorMessage
-                name="name"
-                component="span"
-                className={css.error}
-              />
-            </div>
+          const passError = touched.password && !!errors.password;
+          const passSuccess = touched.password && !errors.password;
+          return (
+            <Form className={css.form}>
+              <div className={css.field}>
+                <Field
+                  id="name"
+                  name="name"
+                  placeholder=" "
+                  className={`${css.input} ${css.inputName}`}
+                />
+                <label htmlFor="name" className={css.label}>
+                  Name:
+                </label>
+                <ErrorMessage
+                  name="name"
+                  component="span"
+                  className={css.error}
+                />
+              </div>
 
-            <div className={css.field}>
-              <Field
-                id="email"
-                name="email"
-                type="email"
-                placeholder=" "
-                className={`${css.input} ${css.inputEmail}`}
-              />
-              <label htmlFor="email" className={css.label}>
-                Mail:
-              </label>
-              <ErrorMessage
-                name="email"
-                component="span"
-                className={css.error}
-              />
-            </div>
-<div className={css.field}>
-  <Field
-    id="password"
-    name="password"
-    type={isHashed ? "password" : "text"}
-    placeholder=" "
-    className={[
-      css.input,
-      css.inputPassword,
-      passError ? css.inputError : "",
-      passSuccess ? css.inputSuccess : "",
-    ].join(" ")}
-  />
+              <div className={css.field}>
+                <Field
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder=" "
+                  className={`${css.input} ${css.inputEmail}`}
+                />
+                <label htmlFor="email" className={css.label}>
+                  Mail:
+                </label>
+                <ErrorMessage
+                  name="email"
+                  component="span"
+                  className={css.error}
+                />
+              </div>
+              <div className={css.field}>
+                <Field
+                  id="password"
+                  name="password"
+                  type={isHashed ? "password" : "text"}
+                  placeholder=" "
+                  className={[
+                    css.input,
+                    css.inputPassword,
+                    passError ? css.inputError : "",
+                    passSuccess ? css.inputSuccess : "",
+                  ].join(" ")}
+                />
 
-  <label htmlFor="password" className={css.label}>Password:</label>
+                <label htmlFor="password" className={css.label}>
+                  Password:
+                </label>
 
-  {/* status icon takes the eye's place */}
-  {passError && <Icon name="error" className={css.statusIcon} width={20} height={20} />}
-  {passSuccess && <Icon name="check" className={css.statusIcon} width={20} height={20} />}
+                {passError && (
+                  <Icon
+                    name="error"
+                    className={css.statusIcon}
+                    width={20}
+                    height={20}
+                  />
+                )}
+                {passSuccess && (
+                  <Icon
+                    name="check"
+                    className={css.statusIcon}
+                    width={20}
+                    height={20}
+                  />
+                )}
 
-  {/* eye button is always in DOM, but display:none when error/success */}
-  <button
-    type="button"
-    className={[
-      css.password_toggle,
-      (passError || passSuccess) ? css.eyeHidden : "",
-    ].join(" ")}
-    onClick={() => setIsHashed((prev) => !prev)}
-  >
-    <Icon name={isHashed ? "eye-off" : "eye"} width={20} height={20} />
-  </button>
+                <button
+                  type="button"
+                  className={[
+                    css.password_toggle,
+                    passError || passSuccess ? css.eyeHidden : "",
+                  ].join(" ")}
+                  onClick={() => setIsHashed((prev) => !prev)}
+                >
+                  <Icon
+                    name={isHashed ? "eye-off" : "eye"}
+                    width={20}
+                    height={20}
+                  />
+                </button>
 
-  <ErrorMessage name="password" component="span" className={css.error} />
-</div>
+                <ErrorMessage
+                  name="password"
+                  component="span"
+                  className={css.error}
+                />
+              </div>
 
-
-
-            <div className={css.buttons}>
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={css.button}
-              >
-                Registration
-              </button>
-              <a className={css.link} href="/login" >Already have an account?</a>
-            </div>
-          </Form>
-        )}}
+              <div className={css.buttons}>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className={css.button}
+                >
+                  Registration
+                </button>
+                <a className={css.link} href="/login">
+                  Already have an account?
+                </a>
+              </div>
+            </Form>
+          );
+        }}
       </Formik>
+      </div>
+      <Phone/>
     </div>
   );
 }
