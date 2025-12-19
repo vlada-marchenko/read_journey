@@ -303,4 +303,13 @@ letter-spacing: 2%;
     .phone {
     display: block;
   }
+
+  .password_toggle {
+  right: 20px;
+  top: 12px;
+}
+
+.statusIcon {
+  right: 20px;
+}
 }
