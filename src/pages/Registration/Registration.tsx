@@ -186,7 +186,9 @@ export function Registration() {
         }}
       </Formik>
       </div>
-      <Phone/>
+      <div className={css.phone}>
+        <Phone />
+      </div>
     </div>
   );
 }

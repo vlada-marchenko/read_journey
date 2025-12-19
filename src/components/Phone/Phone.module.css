@@ -9,3 +9,20 @@
   height: 351px;
   overflow-y: hidden;
 }
+
+
+
+@media (min-width: 1440px) {
+  .window {
+    max-width: 600px;
+    height: 736px;
+        width: 600px;      /* force actual width */
+    flex: 0 0 600px; 
+  }
+
+  .img {
+    width: 405px;
+    height: 835px;
+    margin-top: 80px;
+  }
+}

@@ -164,7 +164,9 @@ export function Login() {
         }}
       </Formik>
       </div>
-      <Phone/>
+      <div className={css.phone}>
+        <Phone />
+      </div>
     </div>
   );
 }

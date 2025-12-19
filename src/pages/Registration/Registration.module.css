@@ -265,4 +265,41 @@ text-decoration-style: solid;
 .label {
   top: 17px;
 }
+
+.phone {
+  display: none;
+}
+}
+
+@media (min-width: 1440px) {
+  .container {
+    flex-direction: row;
+  }
+
+    .window {
+        max-width: 600px;
+        height: 736px;
+        padding: 40px 64px;
+  }
+
+  .input:last-child {
+    margin-bottom: 0;
+  }
+
+    .title {
+    margin-top: 107px;
+font-weight: 700;
+font-style: Bold;
+font-size: 64px;
+line-height: 60px;
+letter-spacing: 2%;
+  }
+
+    .buttons {
+    margin-top: 65px;
+  }
+
+  .phone {
+    display: block;
+  }
 }
