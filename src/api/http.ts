@@ -1,7 +1,13 @@
 import axios from "axios";
 
-export const http = axios.create({baseURL: import.meta.env.VITE_API_URL });
+const baseURL = import.meta.env.VITE_API_URL;          
+console.log("VITE_API_URL =", baseURL);                 
 
+if (!baseURL) {                                        
+  throw new Error("VITE_API_URL is missing in this build");
+}
+
+export const http = axios.create({ baseURL });
 
 http.interceptors.request.use((config) => {
     const token = localStorage.getItem("token");
