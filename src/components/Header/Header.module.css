@@ -106,3 +106,23 @@ text-decoration: none;
   background-color: #4F92F7;
   border-radius: 4px;
 }
+
+.logoutButton {
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 10px 20px;
+width: 91px;
+height: 38px;
+border: 1px solid rgba(249, 249, 249, 0.2);
+border-radius: 30px;
+background: transparent;
+font-weight: 700;
+font-size: 14px;
+line-height: 18px;
+letter-spacing: 2%;
+color: #F9F9F9;
+position: relative;
+top: 300px;
+}

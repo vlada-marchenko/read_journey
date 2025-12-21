@@ -3,6 +3,7 @@ import Icon from '../Icon/Icon'
 import { useAuth } from '../../auth/AuthContext';
 import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false)
@@ -10,6 +11,9 @@ export default function Header() {
         const closeMenu = () => {
         setMenuOpen(false);
     }
+
+        const { user, logout } = useAuth()
+        const navigate = useNavigate();
 
         useEffect(() => {
         document.body.style.overflow = menuOpen ? "hidden" : "auto"
@@ -21,7 +25,12 @@ export default function Header() {
   }
   };
 
-  const { user } = useAuth();
+    const handleLogout = async () => { 
+    await logout();             
+    closeMenu();                
+    navigate('/recommended', { replace: true }); 
+  };
+
 
   const userName = user?.name ?? "";
 
@@ -49,6 +58,7 @@ export default function Header() {
                         <NavLink to='/library' onClick={closeMenu}   className={({ isActive }) =>
     isActive ? `${css.link} ${css.active}` : css.link
   }>My library</NavLink>
+                      <button onClick={handleLogout} className={css.logoutButton}>Logout</button>
                     </nav>
                 </div>
             )}
