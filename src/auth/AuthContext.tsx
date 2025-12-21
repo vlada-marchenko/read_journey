@@ -16,6 +16,7 @@ import {
   type User,
 } from "../api/auth";
 import { useRef } from "react";
+import { http } from "../api/http";
 
 interface AuthContextProps {
   user: User | null;
@@ -51,12 +52,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.setItem("token", token);
     setToken(token);
     localStorage.setItem("refreshToken", refreshToken);
+
+    http.defaults.headers.common.Authorization = `Bearer ${token}`;
   };
 
   const clearTokens = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("refreshToken");
     setToken(null);
+
+    delete http.defaults.headers.common.Authorization;
   };
 
   useEffect(() => {
