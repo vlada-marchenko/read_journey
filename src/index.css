@@ -46,3 +46,6 @@ body {
     'Segoe UI', Roboto, sans-serif;
 }
 
+button {
+  cursor: pointer;
+}

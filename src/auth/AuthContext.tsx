@@ -15,6 +15,7 @@ import {
   type RegisterData,
   type User,
 } from "../api/auth";
+import { useRef } from "react";
 
 interface AuthContextProps {
   user: User | null;
@@ -44,6 +45,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     localStorage.getItem("token")
   );
 
+  const initRef = useRef(false); // does not reset on re-render
+
   const saveTokens = (token: string, refreshToken: string) => {
     localStorage.setItem("token", token);
     setToken(token);
@@ -57,11 +60,30 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   useEffect(() => {
+    if (initRef.current) return;
+    initRef.current = true; // first time effect runs sets to true
     (async () => {
       try {
         const rt = localStorage.getItem("refreshToken");
         if (!rt) {
           setLoading(false);
+          return;
+        }
+        const access = localStorage.getItem("token");
+
+        if (access) {
+          try {
+            const me = await getCurrentUser();
+            setUser(me);
+            return;
+          } catch {
+            // access token might be expired -> fall through to refresh
+          }
+        }
+
+        if (!rt) {
+          clearTokens();
+          setUser(null);
           return;
         }
 
@@ -121,9 +143,5 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     [user, token, loading]
   );
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
