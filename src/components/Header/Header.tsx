@@ -40,7 +40,9 @@ export default function Header() {
             <Icon name="logo-mob" width={42} height={17}/>
             <div className={css.right}>
                 <div className={css.circle}>
+                    <span>
                     {userName.charAt(0).toUpperCase()}
+                    </span>
                 </div>
                 <button className={css.menuButton} onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
                     <Icon name="menu" width={28} height={28}/>

@@ -67,13 +67,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (initRef.current) return;
     initRef.current = true; // first time effect runs sets to true
+    
     (async () => {
       try {
         const rt = localStorage.getItem("refreshToken");
+
         if (!rt) {
           setLoading(false);
           return;
         }
+
         const access = localStorage.getItem("token");
 
         if (access) {
@@ -82,14 +85,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             setUser(me);
             return;
           } catch {
-            // access token might be expired -> fall through to refresh
+            console.log("Access token expired, refreshing...");
           }
-        }
-
-        if (!rt) {
-          clearTokens();
-          setUser(null);
-          return;
         }
 
         const refreshed = await refreshToken(); // backend return new access token and refresh token
@@ -108,23 +105,34 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   async function login(payload: LoginData) {
     const data = await loginUser(payload);
     saveTokens(data.token, data.refreshToken);
-    const currentUser = await getCurrentUser();
-    setUser(currentUser);
+
+    try {
+      const currentUser = await getCurrentUser();
+      setUser(currentUser);
+    } catch (error) {
+      console.error("Failed to get user after login:", error);
+    }
   }
 
   async function register(payload: RegisterData) {
     const data = await registerUser(payload);
     saveTokens(data.token, data.refreshToken);
-    const currentUser = await getCurrentUser();
-    setUser(currentUser);
+
+    try {
+      const currentUser = await getCurrentUser();
+      setUser(currentUser);
+    } catch (error) {
+      console.error("Failed to get user after registration:", error);
+    }
   }
 
   async function logout() {
+        clearTokens();
+      setUser(null);
     try {
       await logoutUser();
     } finally {
-      clearTokens();
-      setUser(null);
+      console.log("User logged out");
     }
   }
 

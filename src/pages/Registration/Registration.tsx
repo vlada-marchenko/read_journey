@@ -10,6 +10,7 @@ import { Formik, Field, ErrorMessage, Form } from "formik";
 import Icon from "../../components/Icon/Icon";
 import { useState } from "react";
 import Phone from "../../components/Phone/Phone";
+import { Link } from "react-router-dom";
 
 const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
@@ -76,6 +77,7 @@ export function Registration() {
         {({ isSubmitting, errors, touched }) => {
           const passError = touched.password && !!errors.password;
           const passSuccess = touched.password && !errors.password;
+                    const showEyeToggle = !passError && !passSuccess
           return (
             <Form className={css.form}>
               <div className={css.field}>
@@ -147,12 +149,10 @@ export function Registration() {
                   />
                 )}
 
+    {showEyeToggle && (
                 <button
                   type="button"
-                  className={[
-                    css.password_toggle,
-                    passError || passSuccess ? css.eyeHidden : "",
-                  ].join(" ")}
+  className={css.password_toggle}
                   onClick={() => setIsHashed((prev) => !prev)}
                 >
                   <Icon
@@ -161,6 +161,7 @@ export function Registration() {
                     height={20}
                   />
                 </button>
+    )}
 
                 <ErrorMessage
                   name="password"
@@ -177,9 +178,9 @@ export function Registration() {
                 >
                   Registration
                 </button>
-                <a className={css.link} href="/login">
+                <Link className={css.link} to="/login">
                   Already have an account?
-                </a>
+                </Link>
               </div>
             </Form>
           );
