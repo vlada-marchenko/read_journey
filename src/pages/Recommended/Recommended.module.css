@@ -7,6 +7,11 @@
   align-items: center;
 }
 
+a {
+  margin: 0;
+  padding: 0;
+}
+
 .window {
   width: 100%;
   max-width: 335px;
@@ -196,4 +201,39 @@
   text-decoration: underline;
   text-decoration-style: solid;
   color: #686868;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 20px 16px;
+    padding-top: 0;
+  }
+
+  .window {
+    width: 100%;
+    max-width: 768px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 32px;
+  }
+
+  .span {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .workout {
+    margin: 0;
+    width: 343px;
+  }
+
+  .title {
+    margin-bottom: 40px;
+  }
+
+  .under {
+    margin-top: 26px;
+  }
 }
