@@ -117,5 +117,8 @@
         stroke-linejoin="round"
       />
     </symbol>
+  <symbol id="icon-books" viewBox="0 0 40 40">
+    <path d="M0 40H40V1.19209e-05H0V40Z" fill="currentColor" />
+  </symbol>
   </defs>
 </svg>

@@ -62,11 +62,17 @@ export default function Recommended() {
             <Link to="/library" className={css.link}>
               My library
             </Link>
-            <Link to="/library">
+            <Link to="/library" className={css.icon}>
               {" "}
               <Icon name="login" width={24} height={24} />
             </Link>
           </div>
+        </div>
+        <div className={css.quote}>
+            <div className={css.book_quote}>
+                <div className={css.emojii}>📚</div>
+                <span className={css.text_quote}>"Books are <span className={css.text_quote_span}>windows </span>to the world, and reading is a journey into the unknown."</span>
+            </div>
         </div>
       </div>
     </div>
