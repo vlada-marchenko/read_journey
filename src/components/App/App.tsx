@@ -6,7 +6,7 @@ import { Registration } from '../../pages/Registration/Registration.tsx'
 import ProtectedRoute from '../../auth/ProtectedRoute'
 import PublicRoute from '../../auth/PublicRoute'
 import Library from '../../pages/Library/Library.tsx'
-import Recommended from '../../pages/Recommended/Recomended'
+import Recommended from '../../pages/Recommended/RecomendedPage.tsx'
 import Reading from '../../pages/Reading/Reading.tsx'
 import Header from '../Header/Header.tsx'
 
