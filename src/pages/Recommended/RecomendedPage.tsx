@@ -1,4 +1,4 @@
-import css from "./Recommended.module.css";
+import css from "./RecommendedPage.module.css";
 import { Link } from "react-router-dom";
 import Icon from "../../components/Icon/Icon";
 

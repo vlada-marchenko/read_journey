@@ -27,3 +27,13 @@ export async function fetchRecommendedBooks(params: {
     })
     return data
 }
+
+export async function addRecommendedBook(id: string) {
+    const { data } = await http.post(`/books/add/${id}`)
+    return data
+}
+
+export async function fetchBookById(id: string): Promise<Book> {
+    const { data } = await http.get<Book>(`/books/${id}`)
+    return data
+}
