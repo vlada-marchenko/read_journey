@@ -1,9 +1,11 @@
 import css from "./RecommendedPage.module.css";
 import { Link } from "react-router-dom";
 import Icon from "../../components/Icon/Icon";
+import { RecommendedBooks } from "../../components/RecommendedBooks/RecommendedBooks";
 
 export default function Recommended() {
   return (
+    <>
     <div className={css.container}>
       <div className={css.window}>
         <div className={css.dashboard}>
@@ -76,5 +78,7 @@ export default function Recommended() {
         </div>
       </div>
     </div>
+    <RecommendedBooks />
+    </>
   );
 }
