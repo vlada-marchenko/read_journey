@@ -8,14 +8,15 @@ import type { Book } from "../../api/recommended";
 import Icon from "../Icon/Icon";
 
 function getPerPage() {
-  if (window.innerWidth < 768) return 2;
-  if (window.innerWidth < 1440) return 8;
+  const w = document.documentElement.clientWidth;
+  if (w < 768) return 2;
+  if (w < 1440) return 8;
   return 10;
 }
 
 export function RecommendedBooks() {
   const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(getPerPage());
+  const [perPage, setPerPage] = useState(() => getPerPage());
   const [books, setBooks] = useState<Book[]>([]);
   const [totalPages, setTotalPages] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -65,6 +66,7 @@ export function RecommendedBooks() {
         if (!fetching) return;
 
         setBooks(data.results);
+        console.log("limit sent:", params.limit, "results len:", data.results.length);
         setTotalPages(data.totalPages || 1);
 
         if (data.totalPages && page > data.totalPages) {
@@ -83,7 +85,7 @@ export function RecommendedBooks() {
     return () => {
       fetching = false;
     };
-  }, [params, page]);
+  }, [params]);
 
   function openModal(book: Book) {
     setSelectedBook(book);
@@ -130,31 +132,28 @@ export function RecommendedBooks() {
       <div className={css.container}>
         <div className={css.window}>
           <div className={css.top}>
-            <h2>Recommended</h2>
+            <h2 className={css.title}>Recommended</h2>
             <div className={css.pagination}>
               <button
-                className={css.arrowBack}
+                className={css.arrow}
                 type="button"
                 onClick={() => setPage(page - 1)}
                 disabled={!goPrev}
               >
-                {/* <Icon name=''/> */}
-                &lt;
+                <Icon className={css.icon} name="arrow-left" width={10} height={10}/>
               </button>
               <button
-                className={css.arrowForward}
+                className={css.arrow}
                 type="button"
                 onClick={() => setPage(page + 1)}
                 disabled={!goNext}
               >
-                {/* <Icon name=''/> */}
-                &gt;
+                <Icon className={css.icon} name="arrow-right" width={10} height={10} />
               </button>
             </div>
           </div>
-          {isLoading && <p>Loading...</p>}
           {error && <p className={css.error}>{error}</p>}
-          <ul className={css.items}>
+          {isLoading ? <p>Loading...</p> : <ul className={css.items}>
             {books.map((book) => (
               <li key={book._id} className={css.item}>
                 <button
@@ -172,12 +171,12 @@ export function RecommendedBooks() {
                   />
                 </button>
                 <div className={css.bookInfo}>
-                  <h3>{book.title}</h3>
-                  <p>{book.author}</p>
+                  <h3 className={css.bookTitle}>{book.title}</h3>
+                  <p className={css.bookAuthor}>{book.author}</p>
                 </div>
               </li>
             ))}
-          </ul>
+          </ul>}
 
           {isModalOpen && selectedBook && (
             <div
@@ -197,7 +196,7 @@ export function RecommendedBooks() {
                   className={css.closeButton}
                   aria-label="Close"
                 >
-                  x{/* <Icon name=""/> */}
+                  <Icon name="close" />
                 </button>
                 <div className={css.modalContent}>
                   <img

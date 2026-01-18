@@ -1,4 +1,3 @@
-
 type IconProps = {
   name: string;
   width?: number;
@@ -7,9 +6,10 @@ type IconProps = {
 };
 
 export default function Icon({ name, width = 24, height = 24, className }: IconProps) {
+  const href = `/sprite.svg?v=6#icon-${name}`; 
   return (
     <svg width={width} height={height} className={className} aria-hidden="true">
-      <use href={`/sprite.svg#icon-${name}`} />
+      <use href={href} xlinkHref={href} />
     </svg>
   );
 }
