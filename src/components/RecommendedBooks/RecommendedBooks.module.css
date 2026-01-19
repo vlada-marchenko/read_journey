@@ -5,21 +5,30 @@
   flex-direction: column;
   gap: 10px;
   align-items: center;
+    width: 100%;
+  align-self: stretch;
 }
 
 .loader {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
 }
 
 .window {
-  width: 100%;
-  max-width: 335px;
+  width: min(335px, 100%);
+  margin: 0 auto;
   background: #1f1f1f;
   border-radius: 30px;
-  padding: 20px;
-  min-height: 380px;
+  padding: 40px 20px;
+  height: 382px;
+  position: relative;
+}
+
+.itemsLoading {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .title {
@@ -102,6 +111,12 @@ img {
     letter-spacing: -2%;
     color: #f9f9f9;
     margin: 0;
+    display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1; 
+  overflow: hidden;
+  line-height: 1.2;     
+  max-height: 1.2em;
 }
 
 .bookAuthor {
@@ -130,11 +145,13 @@ letter-spacing: 2%;
 
   .window {
     width: 100%;
+    min-width: 704px;
     max-width: 704px;
-    padding: 32px;
+    padding: 40px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 663px;
   }
 
   .top {
@@ -158,7 +175,10 @@ letter-spacing: 2%;
 @media (min-width: 1440px) {
   .window {
     width: 100%;
+    min-width: 857px;
     max-width: 857px;
+    height: 651px;
+    padding-bottom: 28px;
   }
 
   .container {

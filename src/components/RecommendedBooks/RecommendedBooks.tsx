@@ -158,7 +158,7 @@ export function RecommendedBooks() {
             </div>
           </div>
           {error && <p className={css.error}>{error}</p>}
-          {isLoading ? <Loader /> : <ul className={css.items}>
+          <ul className={`${css.items} ${isLoading ? css.itemsLoading : ""}`}>
             {books.map((book) => (
               <li key={book._id} className={css.item}>
                 <button
@@ -181,7 +181,8 @@ export function RecommendedBooks() {
                 </div>
               </li>
             ))}
-          </ul>}
+          </ul>
+          {isLoading && <Loader />}
 
           {isModalOpen && selectedBook && (
             <div
