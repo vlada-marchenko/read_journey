@@ -215,14 +215,6 @@ a {
 }
 
 @media (min-width: 768px) {
-  .page {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
-    padding: 0;
-    margin: 0;
-    width: 1400px;
-  }
 
   .container {
     padding: 20px 16px;
@@ -260,6 +252,19 @@ a {
 
 
 @media (min-width: 1440px) {
+  .container {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 32px;
+    max-width: 1216px;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .recommended {
+    flex: 1;
+    min-width: 0;
+  }
 
 .window {
   width: 100%;

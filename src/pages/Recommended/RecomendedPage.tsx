@@ -77,8 +77,10 @@ export default function Recommended() {
             </div>
         </div>
       </div>
+      <div className={css.recommended}>
+          <RecommendedBooks />
+          </div>
     </div>
-    <RecommendedBooks />
     </div>
   );
 }
