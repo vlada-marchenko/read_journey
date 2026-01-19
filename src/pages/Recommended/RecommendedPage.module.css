@@ -255,7 +255,7 @@ a {
   .container {
     flex-direction: row;
     align-items: flex-start;
-    gap: 32px;
+    gap: 16px;
     max-width: 1216px;
     margin: 0 auto;
     padding: 0;

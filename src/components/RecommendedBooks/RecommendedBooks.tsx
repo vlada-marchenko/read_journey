@@ -157,7 +157,7 @@ export function RecommendedBooks() {
               </button>
             </div>
           </div>
-          {error && <p className={css.error}>{error}</p>}
+          {error ? <p className={css.error}>{error}</p> :
           <ul className={`${css.items} ${isLoading ? css.itemsLoading : ""}`}>
             {books.map((book) => (
               <li key={book._id} className={css.item}>
@@ -171,8 +171,6 @@ export function RecommendedBooks() {
                     src={book.imageUrl}
                     alt={book.title}
                     className={css.bookImage}
-                    width={137}
-                    height={208}
                   />
                 </button>
                 <div className={css.bookInfo}>
@@ -181,7 +179,7 @@ export function RecommendedBooks() {
                 </div>
               </li>
             ))}
-          </ul>
+          </ul>}
           {isLoading && <Loader />}
 
           {isModalOpen && selectedBook && (
@@ -202,21 +200,21 @@ export function RecommendedBooks() {
                   className={css.closeButton}
                   aria-label="Close"
                 >
-                  <Icon name="close" />
+                  <Icon name="close" width={22} height={22}/>
                 </button>
                 <div className={css.modalContent}>
+                  <div className={css.modalItem}>
                   <img
                     src={selectedBook.imageUrl}
                     alt={selectedBook.title}
                     className={css.modalImage}
-                    width={137}
-                    height={208}
                   />
-                  <h3 className={css.bookTitle}>{selectedBook.title}</h3>
+                  <h3 className={css.bookTitleModal}>{selectedBook.title}</h3>
                   <p className={css.bookAuthor}>{selectedBook.author}</p>
                   <span className={css.pages}>
                     {selectedBook.totalPages} pages
                   </span>
+                  </div>
                   <button
                     className={css.addBookButton}
                     type="button"
