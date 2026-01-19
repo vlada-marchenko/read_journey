@@ -7,12 +7,19 @@
   align-items: center;
 }
 
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .window {
   width: 100%;
   max-width: 335px;
   background: #1f1f1f;
   border-radius: 30px;
   padding: 20px;
+  min-height: 380px;
 }
 
 .title {
@@ -21,6 +28,7 @@ font-size: 20px;
 line-height: 20px;
 letter-spacing: -2%;
 color: #f9f9f9;
+margin: 0;
 }
 
 .top {
@@ -57,8 +65,19 @@ color: #f9f9f9;
     display: flex;
     flex-direction: row;
     gap: 21px;
-
     padding: 0;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.bookInfo {
+    width: 137px;
 }
 
 img {
@@ -93,4 +112,39 @@ img {
     color: #686868;
     margin-top: 2px;
     margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 20px 16px;
+    padding-top: 0;
+  }
+
+  .window {
+    width: 100%;
+    max-width: 704px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .top {
+    margin: 0;
+    align-self: stretch;
+  }
+
+  .items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    row-gap: 27px;
+    column-gap: 29px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .window {
+    width: 100%;
+    max-width: 847px;
+  }
 }

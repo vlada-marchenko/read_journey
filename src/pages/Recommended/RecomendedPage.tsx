@@ -5,7 +5,7 @@ import { RecommendedBooks } from "../../components/RecommendedBooks/RecommendedB
 
 export default function Recommended() {
   return (
-    <>
+    <div className={css.page}>
     <div className={css.container}>
       <div className={css.window}>
         <div className={css.dashboard}>
@@ -79,6 +79,6 @@ export default function Recommended() {
       </div>
     </div>
     <RecommendedBooks />
-    </>
+    </div>
   );
 }

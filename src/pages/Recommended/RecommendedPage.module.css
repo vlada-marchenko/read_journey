@@ -215,15 +215,23 @@ a {
 }
 
 @media (min-width: 768px) {
+  .page {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    padding: 0;
+    margin: 0;
+    width: 1400px;
+  }
+
   .container {
     padding: 20px 16px;
     padding-top: 0;
-    align-items: start;
   }
 
   .window {
     width: 100%;
-    max-width: 768px;
+    max-width: 704px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 40px;

@@ -160,7 +160,7 @@
 
   .window {
     width: 100%;
-    max-width: 768px;
+    max-width: 704px;
     height: 74px;
     border-radius: 15px;
     display: grid;
@@ -248,7 +248,7 @@
   }
 
   .window {
-    max-width: 1440px;
+    max-width: 1214px;
     /* padding: 28px 16px; */
   }
 }

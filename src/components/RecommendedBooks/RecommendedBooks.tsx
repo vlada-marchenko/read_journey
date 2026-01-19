@@ -6,6 +6,11 @@ import {
 } from "../../api/recommended";
 import type { Book } from "../../api/recommended";
 import Icon from "../Icon/Icon";
+import ClipLoader from "react-spinners/ClipLoader";
+
+function Loader() {
+  return <div className={css.loader}><ClipLoader size={40} color="#ffffff" /></div>;
+}
 
 function getPerPage() {
   const w = document.documentElement.clientWidth;
@@ -153,7 +158,7 @@ export function RecommendedBooks() {
             </div>
           </div>
           {error && <p className={css.error}>{error}</p>}
-          {isLoading ? <p>Loading...</p> : <ul className={css.items}>
+          {isLoading ? <Loader /> : <ul className={css.items}>
             {books.map((book) => (
               <li key={book._id} className={css.item}>
                 <button
