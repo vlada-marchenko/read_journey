@@ -1,6 +1,7 @@
 .window {
     display: flex;
     justify-content: center;
+    align-items: flex-start;
       width: 100%;
   max-width: 335px;
   background: #1f1f1f;
@@ -10,17 +11,24 @@
   overflow-y: hidden;
 }
 
-
+.img {
+  width: 100%;
+  max-width: 255px;  
+  height: 525px;
+  object-fit: contain;
+  margin-bottom: 0;
+}
 
 @media (min-width: 1440px) {
   .window {
     max-width: 600px;
     height: 736px;
-        width: 600px;      /* force actual width */
+        width: 600px;    
     flex: 0 0 600px; 
   }
 
   .img {
+    max-width: none;
     width: 405px;
     height: 835px;
     margin-top: 80px;
