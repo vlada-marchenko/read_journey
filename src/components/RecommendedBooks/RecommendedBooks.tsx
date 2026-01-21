@@ -15,10 +15,18 @@ type Filters = {
 
 type Props = {
   filters?: Filters;
-}
+  fixedCount?: number;
+  showPagination?: boolean;
+  variant?: "home" | "library";
+  footer?: React.ReactNode;
+};
 
 function Loader() {
-  return <div className={css.loader}><ClipLoader size={40} color="#ffffff" /></div>;
+  return (
+    <div className={css.loader}>
+      <ClipLoader size={40} color="#ffffff" />
+    </div>
+  );
 }
 
 function getPerPage() {
@@ -28,9 +36,14 @@ function getPerPage() {
   return 10;
 }
 
-export function RecommendedBooks({ filters }: Props) {
+export function RecommendedBooks({
+  filters,
+  fixedCount,
+  showPagination,
+  variant = "home",
+  footer,
+}: Props) {
   const [page, setPage] = useState(1);
-  const [perPage, setPerPage] = useState(() => getPerPage());
   const [books, setBooks] = useState<Book[]>([]);
   const [totalPages, setTotalPages] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -39,10 +52,17 @@ export function RecommendedBooks({ filters }: Props) {
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const [isAdding, setIsAdding] = useState(false);
 
+  const isFixed = typeof fixedCount === "number";
+  const [perPage, setPerPage] = useState(() =>
+    isFixed ? fixedCount! : getPerPage()
+  );
+
   const goPrev = page > 1;
   const goNext = page < totalPages;
 
   useEffect(() => {
+    if (isFixed) return;
+
     const onResize = () => {
       setPerPage(getPerPage());
     };
@@ -51,20 +71,21 @@ export function RecommendedBooks({ filters }: Props) {
     return () => {
       window.removeEventListener("resize", onResize);
     };
-  }, []);
+  }, [isFixed]);
 
   useEffect(() => {
+    if (isFixed) return;
     setPage(1);
-  }, [perPage]);
+  }, [perPage, isFixed]);
 
   const params = useMemo(
     () => ({
-      page,
+      page: isFixed ? 1 : page,
       limit: perPage,
       title: filters?.title ?? "",
       author: filters?.author ?? "",
     }),
-    [page, perPage, filters?.title, filters?.author]
+    [page, perPage, filters?.title, filters?.author, isFixed]
   );
 
   useEffect(() => {
@@ -80,7 +101,12 @@ export function RecommendedBooks({ filters }: Props) {
         if (!fetching) return;
 
         setBooks(data.results);
-        console.log("limit sent:", params.limit, "results len:", data.results.length);
+        console.log(
+          "limit sent:",
+          params.limit,
+          "results len:",
+          data.results.length
+        );
         setTotalPages(data.totalPages || 1);
 
         if (data.totalPages && page > data.totalPages) {
@@ -144,52 +170,79 @@ export function RecommendedBooks({ filters }: Props) {
   return (
     <>
       <div className={css.container}>
-        <div className={css.window}>
-          <div className={css.top}>
+        <div className={`${css.window} ${variant === "library" ? css.windowLibrary : ""}`}>
+          <div
+            className={`${css.top} ${variant === "library" ? css.topLibrary : ""}`}
+          >
             <h2 className={css.title}>Recommended</h2>
-            <div className={css.pagination}>
-              <button
-                className={css.arrow}
-                type="button"
-                onClick={() => setPage(page - 1)}
-                disabled={!goPrev}
-              >
-                <Icon className={css.icon} name="arrow-left" width={10} height={10}/>
-              </button>
-              <button
-                className={css.arrow}
-                type="button"
-                onClick={() => setPage(page + 1)}
-                disabled={!goNext}
-              >
-                <Icon className={css.icon} name="arrow-right" width={10} height={10} />
-              </button>
-            </div>
-          </div>
-          {error ? <p className={css.error}>{error}</p> :
-          <ul className={`${css.items} ${isLoading ? css.itemsLoading : ""}`}>
-            {books.map((book) => (
-              <li key={book._id} className={css.item}>
+            {!showPagination && !isFixed && (
+              <div className={css.pagination}>
                 <button
-                  className={css.bookButton}
+                  className={css.arrow}
                   type="button"
-                  onClick={() => openModal(book)}
-                  aria-label={`Open details for ${book.title}`}
+                  onClick={() => setPage(page - 1)}
+                  disabled={!goPrev}
                 >
-                  <img
-                    src={book.imageUrl}
-                    alt={book.title}
-                    className={css.bookImage}
+                  <Icon
+                    className={css.icon}
+                    name="arrow-left"
+                    width={10}
+                    height={10}
                   />
                 </button>
-                <div className={css.bookInfo}>
-                  <h3 className={css.bookTitle}>{book.title}</h3>
-                  <p className={css.bookAuthor}>{book.author}</p>
-                </div>
-              </li>
-            ))}
-          </ul>}
+                <button
+                  className={css.arrow}
+                  type="button"
+                  onClick={() => setPage(page + 1)}
+                  disabled={!goNext}
+                >
+                  <Icon
+                    className={css.icon}
+                    name="arrow-right"
+                    width={10}
+                    height={10}
+                  />
+                </button>
+              </div>
+            )}
+          </div>
+          {error ? (
+            <p className={css.error}>{error}</p>
+          ) : (
+            <ul
+              className={[
+                css.items,
+                isLoading ? css.itemsLoading : "",
+                variant === "library" ? css.itemsLibrary : "",
+              ].join(" ")}
+            >
+              {books.map((book) => (
+                <li
+                  key={book._id}
+                  className={`${css.item} ${variant === "library" ? css.itemLibrary : ""}`}
+                >
+                  <button
+                    className={css.bookButton}
+                    type="button"
+                    onClick={() => openModal(book)}
+                    aria-label={`Open details for ${book.title}`}
+                  >
+                    <img
+                      src={book.imageUrl}
+                      alt={book.title}
+                      className={css.bookImage}
+                    />
+                  </button>
+                  <div className={css.bookInfo}>
+                    <h3 className={css.bookTitle}>{book.title}</h3>
+                    <p className={css.bookAuthor}>{book.author}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
           {isLoading && <Loader />}
+          {variant === "library" && footer}
 
           {isModalOpen && selectedBook && (
             <div
@@ -209,20 +262,20 @@ export function RecommendedBooks({ filters }: Props) {
                   className={css.closeButton}
                   aria-label="Close"
                 >
-                  <Icon name="close" width={22} height={22}/>
+                  <Icon name="close" width={22} height={22} />
                 </button>
                 <div className={css.modalContent}>
                   <div className={css.modalItem}>
-                  <img
-                    src={selectedBook.imageUrl}
-                    alt={selectedBook.title}
-                    className={css.modalImage}
-                  />
-                  <h3 className={css.bookTitleModal}>{selectedBook.title}</h3>
-                  <p className={css.bookAuthor}>{selectedBook.author}</p>
-                  <span className={css.pages}>
-                    {selectedBook.totalPages} pages
-                  </span>
+                    <img
+                      src={selectedBook.imageUrl}
+                      alt={selectedBook.title}
+                      className={css.modalImage}
+                    />
+                    <h3 className={css.bookTitleModal}>{selectedBook.title}</h3>
+                    <p className={css.bookAuthor}>{selectedBook.author}</p>
+                    <span className={css.pages}>
+                      {selectedBook.totalPages} pages
+                    </span>
                   </div>
                   <button
                     className={css.addBookButton}

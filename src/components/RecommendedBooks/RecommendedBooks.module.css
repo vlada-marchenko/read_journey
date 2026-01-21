@@ -23,6 +23,8 @@
   padding: 40px 20px;
   height: 382px;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
 .itemsLoading {
@@ -43,7 +45,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 22px;
+  margin-bottom: 0;
 }
 
 .pagination {
@@ -227,11 +229,55 @@ img {
   margin-top: 20px;
 }
 
+.windowLibrary {
+width: 295px;
+height: 244px;
+background: #262626;
+border-radius: 12px;
+padding: 20px;
+}
+
+.topLibrary {
+  margin-bottom: 0;
+}
+
+.itemsLibrary {
+  display: flex;
+  justify-content: space-between;
+  gap: 0;
+  margin-top: 12px;
+}
+
+.itemLibrary {
+  width: 100%;
+  max-width: 71px;
+}
+
+.itemLibrary .bookInfo {
+  width: 100%;
+  max-width: 71px;
+}
+
+.itemLibrary .bookButton img {
+  height: 107px;  
+  width: 71px;
+  max-width: none;
+  object-fit: cover;
+}
+
 @media (min-width: 768px) {
+  
   .container {
     padding: 20px 16px;
     padding-top: 0;
   }
+
+  .itemsLibrary {
+    grid-template-columns: repeat(3, 1fr);
+    overflow-x: auto; 
+  }
+
+  
 
   .title {
     font-weight: 700;
