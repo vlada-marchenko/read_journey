@@ -2,15 +2,24 @@ import css from "./RecommendedPage.module.css";
 import { Link } from "react-router-dom";
 import Icon from "../../components/Icon/Icon";
 import { RecommendedBooks } from "../../components/RecommendedBooks/RecommendedBooks";
+import { useState } from "react";
 
 export default function Recommended() {
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [applied, setApplied] = useState({title: "", author: ""});
+
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setApplied({title: title.trim(), author: author.trim()});
+  }
   return (
     <div className={css.page}>
     <div className={css.container}>
       <div className={css.window}>
         <div className={css.dashboard}>
           <span className={css.span}>Filters</span>
-          <form action="submit" className={css.form}>
+          <form action="submit" className={css.form} onSubmit={onSubmit}>
             <div className={css.field}>
               <label htmlFor="title" className={css.label}>
                 Book title:
@@ -19,6 +28,8 @@ export default function Recommended() {
                 id="title"
                 type="text"
                 className={`${css.input} ${css.inputTitle}`}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </div>
             <div className={css.field}>
@@ -29,9 +40,11 @@ export default function Recommended() {
                 id="author"
                 type="text"
                 className={`${css.input} ${css.inputAuthor}`}
+                value={author}
+                onChange={(e) => setAuthor(e.target.value)}
               />
             </div>
-            <button className={css.button} type="submit">
+            <button className={css.button} type="submit" >
               To apply
             </button>
           </form>
@@ -78,7 +91,7 @@ export default function Recommended() {
         </div>
       </div>
       <div className={css.recommended}>
-          <RecommendedBooks />
+          <RecommendedBooks filters={applied}/>
           </div>
     </div>
     </div>

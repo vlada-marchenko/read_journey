@@ -8,6 +8,15 @@ import type { Book } from "../../api/recommended";
 import Icon from "../Icon/Icon";
 import ClipLoader from "react-spinners/ClipLoader";
 
+type Filters = {
+  title: string;
+  author: string;
+};
+
+type Props = {
+  filters?: Filters;
+}
+
 function Loader() {
   return <div className={css.loader}><ClipLoader size={40} color="#ffffff" /></div>;
 }
@@ -19,7 +28,7 @@ function getPerPage() {
   return 10;
 }
 
-export function RecommendedBooks() {
+export function RecommendedBooks({ filters }: Props) {
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(() => getPerPage());
   const [books, setBooks] = useState<Book[]>([]);
@@ -52,10 +61,10 @@ export function RecommendedBooks() {
     () => ({
       page,
       limit: perPage,
-      title: "",
-      author: "",
+      title: filters?.title ?? "",
+      author: filters?.author ?? "",
     }),
-    [page, perPage]
+    [page, perPage, filters?.title, filters?.author]
   );
 
   useEffect(() => {
