@@ -268,7 +268,7 @@ padding: 20px;
 @media (min-width: 768px) {
   
   .container {
-    padding: 20px 16px;
+    /* padding: 20px 16px; */
     padding-top: 0;
   }
 
@@ -277,7 +277,16 @@ padding: 20px;
     overflow-x: auto; 
   }
 
-  
+  .window.windowLibrary {
+    width: 313px;
+    min-width: 313px;
+    max-width: 313px;
+    height: 272px;
+    padding: 20px;
+    align-items: stretch; 
+    background: #262626;
+    border-radius: 12px;
+  }
 
   .title {
     font-weight: 700;
@@ -355,6 +364,17 @@ padding: 20px;
     max-width: 857px;
     height: 651px;
     padding-bottom: 28px;
+  }
+
+    .window.windowLibrary {
+    width: 295px;
+    min-width: 295px;
+    max-width: 295px;
+    height: 244px;
+    padding: 20px;
+    align-items: stretch;
+    background: #262626;
+    border-radius: 12px;
   }
 
   .container {

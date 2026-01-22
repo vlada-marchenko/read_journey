@@ -13,13 +13,9 @@ line-height: 14px;
 letter-spacing: -2%;
 text-decoration: underline;
 text-decoration-style: solid;
-text-decoration-thickness: 0%;
 color: #686868;
 }
 
-.icon {
-
-}
 
 .container {
       display: flex;
@@ -37,8 +33,17 @@ color: #686868;
   background: #1f1f1f;
   border-radius: 30px;
   padding: 20px;
+  display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.recommended {
-
+@media (min-width: 768px) {
+  .window {
+    max-width: 704px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
