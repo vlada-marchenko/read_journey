@@ -274,7 +274,7 @@ padding: 20px;
 
   .itemsLibrary {
     grid-template-columns: repeat(3, 1fr);
-    overflow-x: auto; 
+    overflow: visible;
   }
 
   .window.windowLibrary {
@@ -370,11 +370,16 @@ padding: 20px;
     width: 295px;
     min-width: 295px;
     max-width: 295px;
-    height: 244px;
+    height: 269px;
     padding: 20px;
     align-items: stretch;
     background: #262626;
     border-radius: 12px;
+  }
+
+  .itemsLibrary {
+    margin-top: 20px;
+    overflow: visible;
   }
 
   .container {

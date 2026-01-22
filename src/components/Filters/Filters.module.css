@@ -119,3 +119,13 @@ line-height: 18px;
 letter-spacing: -2%;
 }
 }
+
+@media (min-width: 1440px) {
+.dashboard {
+    margin-top: 20px;
+  }
+
+  .button {
+    margin-top: 20px;
+  }
+}

@@ -15,7 +15,7 @@ export default function Filters() {
     <div className={css.container}>
       <div className={css.window}>
         <div className={css.dashboard}>
-          <span className={css.span}>Filters</span>
+          <span className={css.span}>Create your libary:</span>
           <form action="submit" className={css.form} onSubmit={onSubmit}>
             <div className={css.field}>
               <label htmlFor="title" className={css.label}>
