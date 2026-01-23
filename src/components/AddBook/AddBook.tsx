@@ -42,7 +42,7 @@ export default function AddBook() {
 
   const [, setErrors] = useState<FormErrors>({});
 
-  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [, setCreated] = useState<{ title: string; author: string; pages?: number} | null>(null)  
 
   const values = useMemo(() => ({
