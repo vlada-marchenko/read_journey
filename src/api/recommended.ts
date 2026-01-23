@@ -16,6 +16,12 @@ export type RecommendedResponse = {
     perPage: number
 }
 
+export type AddBook = {
+    title: string;
+    author: string;
+    totalPages?: number
+}
+
 export async function fetchRecommendedBooks(params: {
     page: number;
     limit: number;
@@ -35,5 +41,10 @@ export async function addRecommendedBook(id: string) {
 
 export async function fetchBookById(id: string): Promise<Book> {
     const { data } = await http.get<Book>(`/books/${id}`)
+    return data
+}
+
+export async function addBook(payload: AddBook) {
+    const { data } = await http.post('/books/add', payload)
     return data
 }
