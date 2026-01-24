@@ -4,6 +4,7 @@ import { RecommendedBooks } from "../../components/RecommendedBooks/RecommendedB
 export { Link } from "react-router-dom";
 import css from "./Library.module.css";
 import AddBook from "../../components/AddBook/AddBook";
+import MyLibrary from "../../components/MyLibrary/MyLibrary";
 
 export default function Library() {
   return (
@@ -33,6 +34,7 @@ export default function Library() {
           />
         </div>
       </div>
+      <MyLibrary />
     </div>
   );
 }
