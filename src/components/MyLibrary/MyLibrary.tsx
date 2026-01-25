@@ -4,22 +4,44 @@ import { useEffect, useState } from "react";
 // import Icon from "../Icon/Icon";
 import { Listbox } from "@headlessui/react";
 import Icon from "../Icon/Icon";
+import { getMyBooks, removeMyBook, type ReadingStatus } from "../../api/library";
+import type { MyBook } from "../../api/library";
 
-type Book = {
-  id: string;
-  title: string;
-  author: string;
-  totalPages: number;
-};
-
-type Option = (typeof options)[number];
 
 const options = ["Unread", "In progress", "Done", "All books"] as const;
+type Option = (typeof options)[number];
+
+function optionToStatus(option: Option): ReadingStatus | undefined {
+  if (option === 'Unread') return 'unread';
+  if (option === 'In progress') return 'in-progress';
+  if (option === 'Done') return 'done';
+  return undefined
+}
 
 export default function MyLibrary() {
-  const [books, setBooks] = useState<Book[]>([]);
+  const [books, setBooks] = useState<MyBook[]>([]);
   const [value, setValue] = useState<Option>('All books');
-//   const [isLoading, setIsLoading] = useState(false);
+  const [, setIsLoading] = useState(false);
+
+useEffect(() => {
+  const status = optionToStatus(value);
+
+  // eslint-disable-next-line no-unexpected-multiline
+  (async () => {
+    setIsLoading(true);
+    try {
+      const data = await getMyBooks(status)
+      setBooks(data);
+    } finally {
+      setIsLoading(false)
+    }
+  })()
+}, [value])
+
+async function handleDelete(id: string) {
+  await removeMyBook(id)
+  setBooks((prev) => prev.filter((b) => b._id !== id))
+}
 
   return (
     <div className={css.container}>
@@ -56,7 +78,7 @@ export default function MyLibrary() {
         <ul className={css.list}>
           {books.length > 0 ? (
             books.map((book) => (
-              <li key={book.id}>
+              <li key={book._id}>
                 <span>{book.title}</span>
                 <span>{book.author}</span>
               </li>
