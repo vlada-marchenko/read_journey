@@ -74,24 +74,44 @@ async function handleDelete(id: string) {
             </Listbox>
           </div>
         </div>
+{books.length > 0 ? (
+  <ul className={css.list}>
+    {books.map((book) => (
+      <li key={book._id} className={css.item}>
+        <button className={css.imgButton}>
+        <img className={css.image} src={book.imageUrl} alt="book cover" />
+                </button>
+        <div className={css.bookInfo}>
+          <div className={css.info}>
+            <span className={css.titleItem}>{book.title}</span>
+            <span className={css.author}>{book.author}</span>
+          </div>
 
-        <ul className={css.list}>
-          {books.length > 0 ? (
-            books.map((book) => (
-              <li key={book._id}>
-                <span>{book.title}</span>
-                <span>{book.author}</span>
-              </li>
-            ))
-          ) : (
-            <div className={css.emptyState}>
-              <div className={css.circle}>
-                <span className={css.emojii}>📚</span>
-              </div>
-              <p className={css.text}>To start training, add <span className={css.span}>some of your books</span> or from the recommended ones</p>
-            </div>
-          )}
-        </ul>
+          <button
+            className={css.delete}
+            onClick={() => handleDelete(book._id)}
+            type="button"
+          >
+            <Icon name="trash" className={css.icon} width={14} height={14} />
+          </button>
+        </div>
+      </li>
+    ))}
+  </ul>
+) : (
+  <div className={css.emptyCover}>
+    <div className={css.emptyState}>
+      <div className={css.circle}>
+        <span className={css.emojii}>📚</span>
+      </div>
+      <p className={css.text}>
+        To start training, add <span className={css.span}>some of your books</span> or from the
+        recommended ones
+      </p>
+    </div>
+  </div>
+)}
+
       </div>
     </div>
   );

@@ -80,6 +80,14 @@ color: #F9F9F9;
 
 .list {
 padding: 0;
+margin: 0;
+list-style: none;
+display: grid;
+grid-template-columns: 50% 50%;
+gap: 10px;
+justify-content: center;
+align-items: center;
+margin-top: 20px;
 }
 
 .wrap {
@@ -130,4 +138,74 @@ margin-bottom: 7px;
 
 .active {
   color: #f9f9f9;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  max-width: 137px;
+}
+
+.titleItem {
+font-weight: 700;
+font-size: 14px;
+line-height: 18px;
+letter-spacing: -2%;
+ color: #F9F9F9;
+   display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  line-height: 1.2;
+  max-height: 1.2em;
+}
+
+.bookInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.author {
+font-weight: 500;
+font-size: 10px;
+line-height: 12px;
+letter-spacing: -2%;
+color: #686868;
+}
+
+.delete {
+width: 28px;
+height: 28px;
+background: rgba(232, 80, 80, 0.1);
+border: 1px solid rgba(232, 80, 80, 0.2);
+border-radius: 50%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+
+.icon {
+  fill: none;
+  color: #E85050;
+}
+
+.imgButton {
+  max-width: 137px;
+  border-radius: 12px;
+  margin-bottom: 8px;
+  height: 208px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
 }
