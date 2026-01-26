@@ -7,6 +7,8 @@ import {
 import type { Book } from "../../api/recommended";
 import Icon from "../Icon/Icon";
 import ClipLoader from "react-spinners/ClipLoader";
+import { getMyBooks } from "../../api/library";
+import { toast } from "react-toastify";
 
 type Filters = {
   title: string;
@@ -51,14 +53,23 @@ export function RecommendedBooks({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBook, setSelectedBook] = useState<Book | null>(null);
   const [isAdding, setIsAdding] = useState(false);
+  const [myBookKeys, setMyBookKeys] = useState<Set<string>>(new Set());
 
   const isFixed = typeof fixedCount === "number";
   const [perPage, setPerPage] = useState(() =>
-    isFixed ? fixedCount! : getPerPage()
+    isFixed ? fixedCount! : getPerPage(),
   );
 
   const goPrev = page > 1;
   const goNext = page < totalPages;
+
+
+  function norm(s: string) {
+  return s.trim().toLowerCase();
+}
+  function keyOf(b: { title: string; author: string }) {
+  return `${norm(b.title)}|||${norm(b.author)}`;
+}
 
   useEffect(() => {
     if (isFixed) return;
@@ -85,8 +96,21 @@ export function RecommendedBooks({
       title: filters?.title ?? "",
       author: filters?.author ?? "",
     }),
-    [page, perPage, filters?.title, filters?.author, isFixed]
+    [page, perPage, filters?.title, filters?.author, isFixed],
   );
+
+  useEffect(() => {
+    if (variant !== "library") return;
+
+    (async () => {
+      try {
+        const my = await getMyBooks();
+        setMyBookKeys(new Set(my.map((b) => keyOf(b))));
+      } catch (e) {
+        console.error("Failed to load my books for duplicate check", e);
+      }
+    })();
+  }, [variant]);
 
   useEffect(() => {
     let fetching = true;
@@ -105,7 +129,7 @@ export function RecommendedBooks({
           "limit sent:",
           params.limit,
           "results len:",
-          data.results.length
+          data.results.length,
         );
         setTotalPages(data.totalPages || 1);
 
@@ -156,21 +180,44 @@ export function RecommendedBooks({
   async function handleAddBook() {
     if (!selectedBook) return;
 
+    if (variant === "library" && myBookKeys.has(keyOf(selectedBook))) {
+      toast("This book is already in your library.");
+      return;
+    }
+
     try {
       setIsAdding(true);
       await addRecommendedBook(selectedBook._id);
+      setMyBookKeys((prev) => {
+        const next = new Set(prev);
+        next.add(keyOf(selectedBook));
+        return next;
+      });
+
+      window.dispatchEvent(new Event("library:changed"));
       closeModal();
     } catch (err) {
       setIsAdding(false);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const status = (err as any)?.response?.status;
+      if (status === 409) {
+        toast("This book is already in your library.");
+        window.dispatchEvent(new Event("library:changed"));
+        closeModal();
+        return;
+      }
+
       console.error(err);
-      alert("Failed to add book to your collection");
+      toast("Failed to add book to your collection");
     }
   }
 
   return (
     <>
       <div className={css.container}>
-        <div className={`${css.window} ${variant === "library" ? css.windowLibrary : ""}`}>
+        <div
+          className={`${css.window} ${variant === "library" ? css.windowLibrary : ""}`}
+        >
           <div
             className={`${css.top} ${variant === "library" ? css.topLibrary : ""}`}
           >
