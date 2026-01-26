@@ -213,6 +213,110 @@ justify-content: center;
   border: none;
 }
 
+.backdrop {
+  position: fixed;
+  background: #14141499;
+  inset: 0;
+}
+
+.modal {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #1f1f1f;
+  z-index: 1000;
+  width: 100%;
+  max-width: 335px;
+  border: 1px solid rgba(104, 104, 104, 0.2);
+  border-radius: 12px;
+  height: 421px;
+}
+
+.modalImage {
+  width: 140px;
+  height: 213px;
+  border-radius: 6px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 16px;
+}
+
+.closeButton {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.modalContent {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modalItem {
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bookTitleModal {
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -2%;
+  color: #f9f9f9;
+  margin: 0;
+  line-height: 1.2;
+  max-height: 1.2em;
+  overflow: hidden;
+}
+
+.bookAuthor {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: -2%;
+  color: #686868;
+  margin-top: 2px;
+  margin-bottom: 0;
+}
+
+.pages {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: -2%;
+  text-align: center;
+  color: #f9f9f9;
+  margin-top: 4px;
+}
+
+.addBookButton {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  gap: 10px;
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  border-radius: 30px;
+  background: transparent;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 2%;
+  color: #f9f9f9;
+  margin-top: 20px;
+}
+
 @media (min-width: 768px) {
     .window {
     max-width: 704px;
@@ -230,6 +334,22 @@ justify-content: center;
     row-gap: 27px;
     column-gap: 29px;
   }
+
+    .modal {
+  padding: 50px;
+  padding-top: 25px;
+  max-width: 500px;
+  height: 483px;
+}
+
+.modalImage {
+  width: 153px;
+  height: 233px;
+}
+
+.addBookButton {
+  margin-top: 32px;
+}
 
 }
 

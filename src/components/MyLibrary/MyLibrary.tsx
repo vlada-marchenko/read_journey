@@ -1,5 +1,7 @@
 import css from "./MyLibrary.module.css";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+import { useNavigate } from "react-router-dom";
 import { Listbox } from "@headlessui/react";
 import Icon from "../Icon/Icon";
 import {
@@ -20,9 +22,11 @@ function optionToStatus(option: Option): ReadingStatus | undefined {
 }
 
 export default function MyLibrary() {
+  const navigate = useNavigate();
   const [books, setBooks] = useState<MyBook[]>([]);
   const [value, setValue] = useState<Option>("All books");
   const [, setIsLoading] = useState(false);
+  const [selectedBook, setSelectedBook] = useState<MyBook | null>(null);
 
   useEffect(() => {
     let mounted = true;
@@ -55,6 +59,81 @@ export default function MyLibrary() {
     await removeMyBook(id);
     setBooks((prev) => prev.filter((b) => b._id !== id));
   }
+
+  function openModal(book: MyBook) {
+    setSelectedBook(book);
+  }
+
+  function closeModal() {
+    setSelectedBook(null);
+  }
+
+  function handleBackdropClick(e: React.MouseEvent<HTMLDivElement>) {
+    if (e.target === e.currentTarget) closeModal();
+  }
+
+  function startReading(book: MyBook) {
+    navigate(`/reading/${book._id}`);
+    closeModal();
+  }
+
+  useEffect(() => {
+    if (!selectedBook) return;
+
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === "Escape") setSelectedBook(null);
+    }
+
+    document.addEventListener("keydown", onKeyDown);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [selectedBook]);
+
+  const modal =
+    selectedBook &&
+    createPortal(
+      <div
+        className={css.backdrop}
+        onClick={handleBackdropClick}
+        aria-modal="true"
+        role="dialog"
+      >
+        <div className={css.modal}>
+          <button
+            onClick={closeModal}
+            type="button"
+            className={css.closeButton}
+            aria-label="Close"
+          >
+            <Icon name="close" width={22} height={22} />
+          </button>
+          <div className={css.modalContent}>
+            <div className={css.modalItem}>
+              <img
+                src={selectedBook.imageUrl}
+                alt={selectedBook.title}
+                className={css.modalImage}
+              />
+              <h3 className={css.bookTitleModal}>{selectedBook.title}</h3>
+              <p className={css.bookAuthor}>{selectedBook.author}</p>
+              <span className={css.pages}>{selectedBook.totalPages} pages</span>
+            </div>
+            <button
+              className={css.addBookButton}
+              type="button"
+              onClick={() => startReading(selectedBook)}
+            >
+              Start reading
+            </button>
+          </div>
+        </div>
+      </div>,
+      document.body,
+    );
 
   return (
     <div className={css.container}>
@@ -91,7 +170,11 @@ export default function MyLibrary() {
           <ul className={css.list}>
             {books.map((book) => (
               <li key={book._id} className={css.item}>
-                <button className={css.imgButton}>
+                <button
+                  className={css.imgButton}
+                  type="button"
+                  onClick={() => openModal(book)}
+                >
                   <img
                     className={css.image}
                     src={book.imageUrl}
@@ -134,6 +217,8 @@ export default function MyLibrary() {
             </div>
           </div>
         )}
+
+        {modal}
       </div>
     </div>
   );
