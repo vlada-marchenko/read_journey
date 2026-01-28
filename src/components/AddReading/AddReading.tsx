@@ -5,7 +5,7 @@ import * as yup from "yup";
 import { toast } from "react-toastify";
 
 export type ReadingProps = {
-  book: Book | null;
+  book: Book;
   isReading: boolean;
   onBookUpdate: (book: Book) => void;
 };
@@ -44,9 +44,6 @@ export function AddReading({ book, isReading, onBookUpdate }: ReadingProps) {
       );
       const pageNum = validated.page;
 
-      if (!book?._id) {
-        throw new Error("Book ID is missing");
-      }
       const updatedBook = !isReading
         ? await startReading({ id: book._id, page: pageNum })
         : await stopReading({ id: book._id, page: pageNum });
@@ -70,7 +67,7 @@ export function AddReading({ book, isReading, onBookUpdate }: ReadingProps) {
         <form className={css.form} onSubmit={handleSubmit}>
           <div className={css.field}>
             <label htmlFor="pages" className={css.label}>
-              Number of pages:
+              Page number:
             </label>
             <input
               id="pages"

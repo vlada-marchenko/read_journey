@@ -66,6 +66,10 @@
 .input:focus {
   background: #262626;
 }
+
+.inputPages {
+  padding-left: 95px;
+}
  
 .button {
   background-color: transparent;
