@@ -5,6 +5,7 @@ import type { Book } from "../../api/reading";
 import { getBook } from "../../api/reading";
 import { useParams } from "react-router-dom";
 import { Details } from "../../components/Details/Details";
+import { MyBook } from "../../components/MyBook/MyBook";
 
 export default function Reading() {
   const [book, setBook] = useState<Book | null>(null);
@@ -52,6 +53,9 @@ export default function Reading() {
                 </div>
             </div>
         ) : <Details/>}
+      </div>
+      <div className={css.window}>
+        <MyBook book={book} isReading={isReading}/>
       </div>
     </div>
   );
