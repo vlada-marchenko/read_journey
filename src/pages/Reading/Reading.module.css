@@ -189,7 +189,6 @@ margin-top: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
     max-width: 335px;
     height: 651px;
   }
