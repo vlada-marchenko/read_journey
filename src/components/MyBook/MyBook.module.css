@@ -104,10 +104,14 @@ line-height: 18px;
 }
 
 .filling {
+  width: 45px;
+  height: 45px;
+}
+
+.reading {
   width: 20px;
   height: 20px;
 }
-
 }
 
 @media (min-width: 1440px) {
@@ -144,6 +148,11 @@ line-height: 18px;
 }
 
 .filling {
+  width: 45px;
+  height: 45px;
+}
+
+.reading {
   width: 20px;
   height: 20px;
 }
