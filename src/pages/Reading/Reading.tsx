@@ -2,7 +2,7 @@ import css from "./Reading.module.css";
 import { AddReading } from "../../components/AddReading/AddReading";
 import { useEffect, useState, useMemo } from "react";
 import type { Book } from "../../api/reading";
-import { getBook } from "../../api/reading";
+import {  getBook } from "../../api/reading";
 import { useParams } from "react-router-dom";
 import { Details } from "../../components/Details/Details";
 import { MyBook } from "../../components/MyBook/MyBook";
@@ -57,6 +57,7 @@ function handleStop(stopPage: number, updatedBook: Book) {
   if(stopPage === updatedBook.totalPages) {
     setFinishedOpen(true)
   }
+
 }
 
   if (!book) {
@@ -79,7 +80,7 @@ function handleStop(stopPage: number, updatedBook: Book) {
                     <span className={css.emojiiStar}>🌟</span>
                 </div>
             </div>
-        ) : <Details book={book}/>}
+        ) : <Details book={book} onBookUpdate={setBook}/>}
       </div>
       <div className={css.windowBook}>
         <MyBook book={book} isReading={isReading}/>

@@ -5,6 +5,7 @@ export type ReadingStatus = 'unread' | 'in-progress' | 'done'
 export type ProgressStatus = 'active' | 'inactive'
 
 export type Progress = {
+    _id: string
     startPage: number;
     startReading: string;
     finishPage?: number;
@@ -62,7 +63,8 @@ export async function stopReading(body: StopReadingBody): Promise<Book> {
 }
 
 export async function deleteReading({ bookId, readingId }: DeleteReadingBody) {
-    await http.delete(`/books/reading`, {
+    const { data } = await http.delete(`/books/reading`, {
         params: { bookId, readingId }
     })
+    return data
 }

@@ -6,7 +6,7 @@ type IconProps = {
 };
 
 export default function Icon({ name, width = 24, height = 24, className }: IconProps) {
-  const href = `/sprite.svg?v=8#icon-${name}`; 
+  const href = `/sprite.svg?v=9#icon-${name}`; 
   return (
     <svg width={width} height={height} className={className} aria-hidden="true">
       <use href={href} xlinkHref={href} />

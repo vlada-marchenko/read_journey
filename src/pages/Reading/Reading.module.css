@@ -189,7 +189,8 @@
     align-items: center;
     justify-content: start;
     max-width: 335px;
-    height: 651px;
+    min-height: 651px;
+    padding: 20px 15px;
   }
 
   .container {

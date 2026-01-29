@@ -97,4 +97,8 @@
     font-size: 14px;
     line-height: 18px;
   }
+
+  .form {
+    margin-bottom: 0;
+  }
 }
