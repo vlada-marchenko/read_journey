@@ -7,6 +7,6 @@ type Props = {
 
 export function Details({book}: Props) {
     return (
-        <div>Details</div>
+        <div>Details {book.title}</div>
     )
 }
