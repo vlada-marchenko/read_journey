@@ -16,6 +16,7 @@ export function MyBook({book, isReading}: Props) {
 
     return (
         <div className={css.container}>
+            <div className={css.window}>
                 <h2 className={css.title}>My reading</h2>
                 <div className={css.cover}>
                     <img className={css.image} src={book.imageUrl} alt="book cover" />
@@ -24,6 +25,7 @@ export function MyBook({book, isReading}: Props) {
                     <div className={css.circle}>
                         <div className={`${css.filling} ${isReading ? css.reading : ''}`}></div>
                 </div>
+            </div>
             </div>
         </div>
     )

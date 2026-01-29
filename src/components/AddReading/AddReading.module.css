@@ -90,3 +90,11 @@
   margin-top: 13px;
   white-space: nowrap;
 }
+
+
+@media (min-width: 768px) {
+  .span {
+    font-size: 14px;
+    line-height: 18px;
+  }
+}

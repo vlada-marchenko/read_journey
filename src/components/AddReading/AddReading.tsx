@@ -8,9 +8,10 @@ export type ReadingProps = {
   book: Book;
   isReading: boolean;
   onBookUpdate: (book: Book) => void;
+  onStop?: (stopPage: number, updatedBook: Book) => void
 };
 
-export function AddReading({ book, isReading, onBookUpdate }: ReadingProps) {
+export function AddReading({ book, isReading, onBookUpdate, onStop }: ReadingProps) {
   const [page, setPage] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -44,11 +45,14 @@ export function AddReading({ book, isReading, onBookUpdate }: ReadingProps) {
       );
       const pageNum = validated.page;
 
-      const updatedBook = !isReading
-        ? await startReading({ id: book._id, page: pageNum })
-        : await stopReading({ id: book._id, page: pageNum });
-
-      onBookUpdate(updatedBook);
+      if(!isReading) {
+        const updatedBook = await startReading({ id: book._id, page: pageNum })
+        onBookUpdate(updatedBook)
+      } else {
+        const updatedBook = await stopReading({ id: book._id, page: pageNum })
+        onStop?.(pageNum, updatedBook)
+        onBookUpdate(updatedBook)
+      }
       setPage("");
     } catch (err) {
       const errorMessage =
@@ -83,7 +87,6 @@ export function AddReading({ book, isReading, onBookUpdate }: ReadingProps) {
           </button>
         </form>
       </div>
-      <div className={css.window}></div>
     </div>
   );
 }

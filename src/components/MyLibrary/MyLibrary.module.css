@@ -335,6 +335,11 @@ justify-content: center;
     min-height: 518px;
   }
 
+  .list > .item:only-child {
+  grid-column: 1 / 1;       
+}
+
+
   .emptyState {
     margin-top: 100px;
   }
