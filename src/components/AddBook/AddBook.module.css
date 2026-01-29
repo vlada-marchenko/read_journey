@@ -3,7 +3,7 @@
   flex-direction: column;
   align-items: start;
   gap: 8px;
- width: 295px;
+  width: 295px;
   margin-bottom: 20px;
   margin-top: 8px;
 }
@@ -43,7 +43,7 @@
 }
 
 .inputPages {
-    padding-left: 115px;
+  padding-left: 115px;
 }
 
 .field {
@@ -66,9 +66,9 @@
 }
 
 .icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .input:focus + .label,
@@ -146,33 +146,32 @@
 }
 
 .emojii {
-font-weight: 500;
-font-size: 50px;
-line-height: 50px;
-letter-spacing: -2%;
-
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 50px;
+  letter-spacing: -2%;
 }
 
 .title {
-font-weight: 700;
-font-style: Bold;
-font-size: 18px;
-line-height: 18px;
-letter-spacing: -2%;
-text-align: center;
-color: #f9f9f9;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 18px;
+  line-height: 18px;
+  letter-spacing: -2%;
+  text-align: center;
+  color: #f9f9f9;
 }
 
 .text {
-font-weight: 500;
-font-style: Medium;
-font-size: 14px;
-line-height: 18px;
-letter-spacing: -2%;
-text-align: center;
-color: #686868;
-width: 252px;
-margin: 0;
+  font-weight: 500;
+  font-style: Medium;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: -2%;
+  text-align: center;
+  color: #686868;
+  width: 252px;
+  margin: 0;
 }
 
 .spanText {
@@ -180,37 +179,36 @@ margin: 0;
 }
 
 @media (min-width: 768px) {
-.button {
+  .button {
     margin-top: 38px;
-}
+  }
 
-.span {
-font-weight: 500;
-font-size: 14px;
-line-height: 18px;
-letter-spacing: -2%;
-}
+  .span {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -2%;
+  }
 
-.modal {
-  max-width: 342px;
-  height: 290px;
-}
+  .modal {
+    max-width: 342px;
+    height: 290px;
+  }
 
-.emojii {
-font-size: 68px;
-line-height: 70px;
-}
+  .emojii {
+    font-size: 68px;
+    line-height: 70px;
+  }
 
-.title {
-font-size: 20px;
-line-height: 20px;
-margin-bottom: 12px;
-}
-
+  .title {
+    font-size: 20px;
+    line-height: 20px;
+    margin-bottom: 12px;
+  }
 }
 
 @media (min-width: 1440px) {
-.dashboard {
+  .dashboard {
     margin-top: 20px;
   }
 

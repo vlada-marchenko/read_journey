@@ -64,13 +64,12 @@ export function RecommendedBooks({
   const goPrev = page > 1;
   const goNext = page < totalPages;
 
-
   function norm(s: string) {
-  return s.trim().toLowerCase();
-}
+    return s.trim().toLowerCase();
+  }
   function keyOf(b: { title: string; author: string }) {
-  return `${norm(b.title)}|||${norm(b.author)}`;
-}
+    return `${norm(b.title)}|||${norm(b.author)}`;
+  }
 
   useEffect(() => {
     if (isFixed) return;
@@ -292,51 +291,56 @@ export function RecommendedBooks({
           {isLoading && <Loader />}
           {variant === "library" && footer}
 
-          {isModalOpen && selectedBook && createPortal(
-            <div
-              className={css.backdrop}
-              onClick={(e) => {
-                if (e.target === e.currentTarget) {
-                  closeModal();
-                }
-              }}
-              aria-modal="true"
-              role="dialog"
-            >
-              <div className={css.modal}>
-                <button
-                  onClick={closeModal}
-                  type="button"
-                  className={css.closeButton}
-                  aria-label="Close"
-                >
-                  <Icon name="close" width={22} height={22} />
-                </button>
-                <div className={css.modalContent}>
-                  <div className={css.modalItem}>
-                    <img
-                      src={selectedBook.imageUrl}
-                      alt={selectedBook.title}
-                      className={css.modalImage}
-                    />
-                    <h3 className={css.bookTitleModal}>{selectedBook.title}</h3>
-                    <p className={css.bookAuthor}>{selectedBook.author}</p>
-                    <span className={css.pages}>
-                      {selectedBook.totalPages} pages
-                    </span>
-                  </div>
+          {isModalOpen &&
+            selectedBook &&
+            createPortal(
+              <div
+                className={css.backdrop}
+                onClick={(e) => {
+                  if (e.target === e.currentTarget) {
+                    closeModal();
+                  }
+                }}
+                aria-modal="true"
+                role="dialog"
+              >
+                <div className={css.modal}>
                   <button
-                    className={css.addBookButton}
+                    onClick={closeModal}
                     type="button"
-                    onClick={handleAddBook}
-                    disabled={isAdding}
+                    className={css.closeButton}
+                    aria-label="Close"
                   >
-                    Add to my library
+                    <Icon name="close" width={22} height={22} />
                   </button>
+                  <div className={css.modalContent}>
+                    <div className={css.modalItem}>
+                      <img
+                        src={selectedBook.imageUrl}
+                        alt={selectedBook.title}
+                        className={css.modalImage}
+                      />
+                      <h3 className={css.bookTitleModal}>
+                        {selectedBook.title}
+                      </h3>
+                      <p className={css.bookAuthor}>{selectedBook.author}</p>
+                      <span className={css.pages}>
+                        {selectedBook.totalPages} pages
+                      </span>
+                    </div>
+                    <button
+                      className={css.addBookButton}
+                      type="button"
+                      onClick={handleAddBook}
+                      disabled={isAdding}
+                    >
+                      Add to my library
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </div>, document.getElementById('modal-root')!
-          )}
+              </div>,
+              document.getElementById("modal-root")!,
+            )}
         </div>
       </div>
     </>

@@ -12,62 +12,62 @@
 }
 
 .filling {
-  background-color:#E90516;
+  background-color: #e90516;
   width: 30px;
   height: 30px;
   border-radius: 50%;
   border: none;
-    transition: 
+  transition:
     width 0.3s ease,
     height 0.3s ease,
     border-radius 0.3s ease;
 }
 
 .reading {
-width: 15px;
-height: 15px;
-background: #E90516;
-border-radius: 3px;
+  width: 15px;
+  height: 15px;
+  background: #e90516;
+  border-radius: 3px;
 }
 
 .title {
-font-weight: 700;
-font-size: 20px;
-line-height: 20px;
-color: #F9F9F9;
-margin: 0;
-align-self: flex-start !important;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 20px;
+  color: #f9f9f9;
+  margin: 0;
+  align-self: flex-start !important;
 }
 
 .cover {
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-margin: 0 auto;
-max-width: 146px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 146px;
 }
 
 .image {
-width: 137px;
-height: 208px;
-border-radius: 8px;
+  width: 137px;
+  height: 208px;
+  border-radius: 8px;
 }
 
 .bookTitle {
-font-weight: 700;
-font-size: 14px;
-line-height: 18px;
-text-align: center;
-color: #F9F9F9;
-margin-bottom: 0;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  color: #f9f9f9;
+  margin-bottom: 0;
 }
 
 .author {
-font-weight: 500;
-font-size: 10px;
-line-height: 12px;
-color: #686868;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  color: #686868;
 }
 
 .header {
@@ -80,91 +80,89 @@ color: #686868;
 }
 
 .time {
-font-weight: 500;
-font-size: 12px;
-line-height: 16px;
-color: #686868;
-
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #686868;
 }
 
 @media (min-width: 768px) {
-.title {
-font-size: 28px;
-line-height: 32px;
-margin-top: 0;
-}
+  .title {
+    font-size: 28px;
+    line-height: 32px;
+    margin-top: 0;
+  }
 
-.cover {
-  max-width: 340px;
-}
+  .cover {
+    max-width: 340px;
+  }
 
-.image {
-  width: 169px;
-  height: 256px;
-}
+  .image {
+    width: 169px;
+    height: 256px;
+  }
 
-.bookTitle {
-font-size: 20px;
-line-height: 20px;
-margin-top: 25px;
-}
+  .bookTitle {
+    font-size: 20px;
+    line-height: 20px;
+    margin-top: 25px;
+  }
 
-.author {
-font-size: 14px;
-line-height: 18px;
-}
+  .author {
+    font-size: 14px;
+    line-height: 18px;
+  }
 
-.circle {
-  width: 50px;
-  height: 50px;
-}
+  .circle {
+    width: 50px;
+    height: 50px;
+  }
 
-.filling {
-  width: 38px;
-  height: 38px;
-}
+  .filling {
+    width: 38px;
+    height: 38px;
+  }
 
-.reading {
-  width: 20px;
-  height: 20px;
-}
-
+  .reading {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 @media (min-width: 1440px) {
-      .title {
-font-size: 28px;
-line-height: 32px;
-margin-top: 0;
-}
+  .title {
+    font-size: 28px;
+    line-height: 32px;
+    margin-top: 0;
+  }
 
-.cover {
-  max-width: 340px;
-}
+  .cover {
+    max-width: 340px;
+  }
 
-.image {
-  width: 224px;
-  height: 340px;
-}
+  .image {
+    width: 224px;
+    height: 340px;
+  }
 
-.bookTitle {
-font-size: 20px;
-line-height: 20px;
-margin-top: 25px;
-}
+  .bookTitle {
+    font-size: 20px;
+    line-height: 20px;
+    margin-top: 25px;
+  }
 
-.author {
-font-size: 14px;
-line-height: 18px;
-}
+  .author {
+    font-size: 14px;
+    line-height: 18px;
+  }
 
-.circle {
-  width: 50px;
-  height: 50px;
-}
+  .circle {
+    width: 50px;
+    height: 50px;
+  }
 
-.reading {
-  width: 20px;
-  height: 20px;
-}
+  .reading {
+    width: 20px;
+    height: 20px;
+  }
 }

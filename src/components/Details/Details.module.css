@@ -17,53 +17,53 @@
 }
 
 .cont {
-      width: 100%;
+  width: 100%;
   max-width: 295px;
   padding: 16px;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-min-height: 211px;
-background: #262626;
-border-radius: 12px;
+  min-height: 211px;
+  background: #262626;
+  border-radius: 12px;
 }
 
 .header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 15px;
-    margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  margin-top: 20px;
 }
 
 .switch {
-    display: flex;
-    flex-direction: row;
-    gap: 8px;
-    margin-right: 7px;
-    margin-top: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  margin-right: 7px;
+  margin-top: 0;
 }
 
 .title {
-font-weight: 700;
-font-size: 18px;
-line-height: 18px;
-color: #f9f9f9;
-margin: 0;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  color: #f9f9f9;
+  margin: 0;
 }
 
 .button {
-border: none;
-background-color: transparent;
-width: 16px;
-height: 16px;
+  border: none;
+  background-color: transparent;
+  width: 16px;
+  height: 16px;
 }
 
 .deactive {
-fill: #686868;
-stroke: #686868;
-color: #686868;
+  fill: #686868;
+  stroke: #686868;
+  color: #686868;
 }
 
 .icon {
@@ -71,10 +71,10 @@ color: #686868;
 }
 
 .list {
-    padding: 0;
-      list-style: none;
-      margin: 0;
-  min-height: 220px;        
+  padding: 0;
+  list-style: none;
+  margin: 0;
+  min-height: 220px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -111,19 +111,19 @@ color: #686868;
 }
 
 .date {
-font-weight: 700;
-font-size: 12px;
-line-height: 16px;
-color: #f9f9f9;
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 16px;
+  color: #f9f9f9;
 }
 
 .percent {
   color: #f9f9f9;
   margin-top: 10px;
-font-weight: 500;
-font-size: 14px;
-line-height: 18px;
-margin-left: 28px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  margin-left: 28px;
 }
 
 .minutes {
@@ -141,7 +141,6 @@ margin-left: 28px;
   padding-right: 25px;
 }
 
-
 .pages {
   font-weight: 500;
   font-size: 12px;
@@ -152,7 +151,7 @@ margin-left: 28px;
   width: 70px;
   height: 10px;
   border-radius: 8px;
-  background: #30B94D33;
+  background: #30b94d33;
   position: relative;
   overflow: hidden;
 }
@@ -161,8 +160,8 @@ margin-left: 28px;
   content: "";
   position: absolute;
   inset: 0;
-  background:#30B94D;
-  width:  var(--fill, 0%);
+  background: #30b94d;
+  width: var(--fill, 0%);
 }
 
 .speed {
@@ -189,14 +188,14 @@ margin-left: 28px;
 }
 
 .emptyTitle {
-font-weight: 700;
-font-size: 18px;
-line-height: 18px;
-color: #f9f9f9;
-margin: 0;
-margin-bottom: 15px;
-margin-top: 20px;
-text-align: center;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  color: #f9f9f9;
+  margin: 0;
+  margin-bottom: 15px;
+  margin-top: 20px;
+  text-align: center;
 }
 
 .emptyText {
@@ -208,14 +207,14 @@ text-align: center;
 }
 
 .span {
-    color: #f9f9f9;
+  color: #f9f9f9;
 }
 
 .circle {
   margin: 20px auto 0;
   width: 80px;
   height: 80px;
-  background: #1F1F1F;
+  background: #1f1f1f;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -230,11 +229,100 @@ text-align: center;
   transform: translateY(2px);
 }
 
+.statistics {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  padding: 10px 0;
+  flex: 1;
+  height: 211px;
+}
+
+.ringWrap {
+display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 120px;
+  height: 120px;
+}
+
+.ring {
+  transform: rotate(-90deg);
+  display: block;
+  width: 120px;
+  height: 120px;
+}
+
+.ringTrack {
+  fill: none;
+  stroke: rgba(0, 0, 0, 0.25);
+  stroke-width: 10;
+}
+
+.ringProgress {
+  fill: none;
+  stroke: #30b94d;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 289;
+  stroke-dashoffset: calc(289 - (289 * var(--p)) / 100);
+}
+
+.ringCenter {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+}
+
+.ringText {
+font-weight: 700;
+font-size: 18px;
+line-height: 20px;
+  color: #f9f9f9;
+}
+
+.legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+
+.legendDot {
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: #30b94d;
+}
+
+.legendInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.legendPercent {
+  font-weight: 700;
+  font-size: 16px;
+  color: #f9f9f9;
+}
+
+.legendPages {
+  font-weight: 500;
+  font-size: 12px;
+  color: #686868;
+}
+
 @media (min-width: 768px) {
-.header {
+  .header {
     margin-bottom: 15px;
     margin-top: 0;
-}
+  }
 
   .switch {
     margin-right: 15px;
@@ -246,13 +334,11 @@ text-align: center;
 }
 
 @media (min-width: 1440px) {
-  .cont{
+  .cont {
     display: flex;
     flex-direction: column;
     align-items: stretch;
     justify-content: start;
     width: 335px;
   }
-
-
 }

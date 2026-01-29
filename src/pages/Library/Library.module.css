@@ -1,24 +1,23 @@
 .footer {
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-margin-top: 12px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
 }
 
 .link {
-font-weight: 500;
-font-size: 12px;
-line-height: 14px;
-letter-spacing: -2%;
-text-decoration: underline;
-text-decoration-style: solid;
-color: #686868;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: -2%;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  color: #686868;
 }
 
-
 .container {
-      display: flex;
+  display: flex;
   justify-content: center;
   flex-direction: column;
   gap: 10px;
@@ -34,8 +33,8 @@ color: #686868;
   border-radius: 30px;
   padding: 20px;
   display: flex;
-    flex-direction: column;
-    align-items: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media (min-width: 768px) {
@@ -58,7 +57,7 @@ color: #686868;
     height: 651px;
   }
 
-    .container {
+  .container {
     flex-direction: row;
     align-items: flex-start;
     gap: 16px;

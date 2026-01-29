@@ -15,7 +15,6 @@
   padding: 20px 20px 40px;
 }
 
-
 .title {
   color: #f9f9f9;
   font-weight: 700;
@@ -179,7 +178,6 @@
   color: #f9f9f9;
 }
 
-
 .inputError {
   border-color: rgba(255, 107, 107, 0.6);
 }
@@ -194,26 +192,25 @@
   top: 12px;
 }
 
-
 @media (min-width: 768px) {
   .container {
     margin-top: 32px;
   }
 
   .window {
-        max-width: 704px;
-        height: 960px;
-        padding: 40px 64px 214px;
+    max-width: 704px;
+    height: 960px;
+    padding: 40px 64px 214px;
   }
 
   .title {
     margin-top: 157px;
-font-weight: 700;
-font-style: Bold;
-font-size: 64px;
-line-height: 60px;
-letter-spacing: 2%;
-width: 444px;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 64px;
+    line-height: 60px;
+    letter-spacing: 2%;
+    width: 444px;
   }
 
   .form {
@@ -235,41 +232,40 @@ width: 444px;
   .button {
     width: 166px;
     height: 52px;
-font-weight: 700;
-font-style: Bold;
-font-size: 20px;
-line-height: 20px;
-letter-spacing: 2%;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 20px;
+    line-height: 20px;
+    letter-spacing: 2%;
   }
 
   .link {
-font-weight: 500;
-font-style: Medium;
-font-size: 14px;
-line-height: 18px;
-letter-spacing: -2%;
-text-decoration: underline;
-text-decoration-style: solid;
+    font-weight: 500;
+    font-style: Medium;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -2%;
+    text-decoration: underline;
+    text-decoration-style: solid;
   }
 
   .statusIcon {
-  right: 120px;
-  top: 15px;
-}
+    right: 120px;
+    top: 15px;
+  }
 
+  .password_toggle {
+    right: 125px;
+    top: 15px;
+  }
 
-.password_toggle {
-  right: 125px;
-  top: 15px;
-}
+  .label {
+    top: 17px;
+  }
 
-.label {
-  top: 17px;
-}
-
-.phone {
-  display: none;
-}
+  .phone {
+    display: none;
+  }
 }
 
 @media (min-width: 1440px) {
@@ -277,39 +273,39 @@ text-decoration-style: solid;
     flex-direction: row;
   }
 
-    .window {
-        max-width: 600px;
-        height: 736px;
-        padding: 40px 64px;
+  .window {
+    max-width: 600px;
+    height: 736px;
+    padding: 40px 64px;
   }
 
   .input:last-child {
     margin-bottom: 0;
   }
 
-    .title {
+  .title {
     margin-top: 107px;
-font-weight: 700;
-font-style: Bold;
-font-size: 64px;
-line-height: 60px;
-letter-spacing: 2%;
+    font-weight: 700;
+    font-style: Bold;
+    font-size: 64px;
+    line-height: 60px;
+    letter-spacing: 2%;
   }
 
-    .buttons {
+  .buttons {
     margin-top: 130px;
   }
 
-    .phone {
+  .phone {
     display: block;
   }
 
   .password_toggle {
-  right: 20px;
-  top: 12px;
-}
+    right: 20px;
+    top: 12px;
+  }
 
-.statusIcon {
-  right: 20px;
-}
+  .statusIcon {
+    right: 20px;
+  }
 }

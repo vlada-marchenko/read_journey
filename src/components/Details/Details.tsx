@@ -24,7 +24,12 @@ export function Details({ book, onBookUpdate }: Props) {
 
   const events = useMemo(() => {
     return book.progress
-      .filter((p) => p.status === "inactive" && p.finishPage !== null && p.finishReading !== null)
+      .filter(
+        (p) =>
+          p.status === "inactive" &&
+          p.finishPage !== null &&
+          p.finishReading !== null,
+      )
       .map((p) => {
         const pagesRead = (p.finishPage as number) - p.startPage + 1;
         const minutes = minutesBetween(
@@ -100,57 +105,100 @@ export function Details({ book, onBookUpdate }: Props) {
           </div>
         </div>
 
-{view === "diary" ? (
-  <div className={css.cont}>
-    {events.length === 0 ? (
-      <div className={css.empty}>
-        <div className={css.circle}>
-            <span className={css.emojii}>🌟</span>
-        </div>
-        <p className={css.emptyTitle}>No reading records yet</p>
-        <p className={css.emptyText}>Press <span className={css.span}>'To stop'</span> to save your first reading session.</p>
-      </div>
-    ) : (
-      <ul className={css.list}>
-        {events.map((e) => (
-          <li key={e.id} className={css.item}>
-            <div className={css.left}>
-              <div className={css.dateRow}>
-                <span className={css.checkbox}></span>
-                <span className={css.date}>{e.date}</span>
+        {view === "diary" ? (
+          <div className={css.cont}>
+            {events.length === 0 ? (
+              <div className={css.empty}>
+                <div className={css.circle}>
+                  <span className={css.emojii}>🌟</span>
+                </div>
+                <p className={css.emptyTitle}>No reading records yet</p>
+                <p className={css.emptyText}>
+                  Press <span className={css.span}>'To stop'</span> to save your
+                  first reading session.
+                </p>
               </div>
-              <div className={css.percent}>{e.percent.toFixed(1)}%</div>
-              <div className={css.minutes}>{e.minutes} minutes</div>
-            </div>
-            <div className={css.right}>
-              <div className={css.pages}>{e.pagesRead} pages</div>
-              <div
-                className={css.bar}
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                style={{ ["--fill" as any]: `${Math.min(100, Math.max(0, e.percent))}%` }}
-              />
-              <div className={css.speed}>{e.speed} pages <br /> per hour</div>
-              <button
-                className={css.trash}
-                type="button"
-                onClick={() => handleDelete(e.id)}
-                aria-label="Delete"
-              >
-                <Icon name="trash" width={16} height={16} />
-              </button>
-            </div>
-          </li>
-        ))}
-      </ul>
-    )}
-  </div>
-) : (
-  <div className={css.cont}>
-    <div className={css.statistics}>
+            ) : (
+              <ul className={css.list}>
+                {events.map((e) => (
+                  <li key={e.id} className={css.item}>
+                    <div className={css.left}>
+                      <div className={css.dateRow}>
+                        <span className={css.checkbox}></span>
+                        <span className={css.date}>{e.date}</span>
+                      </div>
+                      <div className={css.percent}>{e.percent.toFixed(1)}%</div>
+                      <div className={css.minutes}>{e.minutes} minutes</div>
+                    </div>
+                    <div className={css.right}>
+                      <div className={css.pages}>{e.pagesRead} pages</div>
+                      <div
+                        className={css.bar}
+                        style={{
+                          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                          ["--fill" as any]: `${Math.min(100, Math.max(0, e.percent))}%`,
+                        }}
+                      />
+                      <div className={css.speed}>
+                        {e.speed} pages <br /> per hour
+                      </div>
+                      <button
+                        className={css.trash}
+                        type="button"
+                        onClick={() => handleDelete(e.id)}
+                        aria-label="Delete"
+                      >
+                        <Icon name="trash" width={16} height={16} />
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        ) : (
+          <div className={css.cont}>
+            <div className={css.statistics}>
+              <div className={css.ringWrap}>
+                <svg className={css.ring} >
+                  <circle className={css.ringTrack} cx="60" cy="60" r="46" />
+                  <circle
+                    className={css.ringProgress}
+                    cx="60"
+                    cy="60"
+                    r="46"
+                    style={
+                      {
+                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                        ["--p" as any]: Math.min(
+                          100,
+                          Math.max(0, totalPercent),
+                        ),
+                      } as React.CSSProperties
+                    }
+                  />
+                </svg>
 
-    </div>
-  </div>
-)}
+                <div className={css.ringCenter}>
+                  <span className={css.ringText}>
+                    {Math.round(totalPercent)}%
+                  </span>
+                </div>
+              </div>
+                          <div className={css.legend}>
+              <span className={css.legendDot} />
+              <div className={css.legendInfo}>
+                <div className={css.legendPercent}>
+                  {totalPercent.toFixed(2)}%
+                </div>
+                <div className={css.legendPages}>
+                  {totalPagesRead} pages read
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

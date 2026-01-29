@@ -1,4 +1,3 @@
-
 import * as yup from "yup";
 import css from "./Registration.module.css";
 import type { RegisterData } from "../../api/auth";
@@ -43,7 +42,7 @@ export function Registration() {
 
   const onSubmit = async (
     { name, email, password }: RegisterData,
-    helpers: FormikHelpers<RegisterData>
+    helpers: FormikHelpers<RegisterData>,
   ) => {
     try {
       await doRegister({ name, email, password });
@@ -53,7 +52,7 @@ export function Registration() {
       console.error("Registration error:", error);
       toast.error(
         error?.response?.data?.message ||
-          "Registration failed. Please try again."
+          "Registration failed. Please try again.",
       );
     } finally {
       helpers.setSubmitting(false);
@@ -61,131 +60,132 @@ export function Registration() {
   };
   return (
     <div className={css.container}>
-              <div className={css.window}>
-      <Icon name="logo" className={css.icon} width={182} height={17} />
-      <Icon name="logo-mob" className={css.icon_mob} width={42} height={17} />
-      <h1 className={css.title}>
-        Expand your mind, reading <span className={css.title_span}>a book</span>
-      </h1>
-      <Formik
-        initialValues={initialValues}
-        validationSchema={schema}
-        onSubmit={onSubmit}
-        validateOnBlur
-        validateOnChange
-      >
-        {({ isSubmitting, errors, touched }) => {
-          const passError = touched.password && !!errors.password;
-          const passSuccess = touched.password && !errors.password;
-                    const showEyeToggle = !passError && !passSuccess
-          return (
-            <Form className={css.form}>
-              <div className={css.field}>
-                <Field
-                  id="name"
-                  name="name"
-                  placeholder=" "
-                  className={`${css.input} ${css.inputName}`}
-                />
-                <label htmlFor="name" className={css.label}>
-                  Name:
-                </label>
-                <ErrorMessage
-                  name="name"
-                  component="span"
-                  className={css.error}
-                />
-              </div>
-
-              <div className={css.field}>
-                <Field
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder=" "
-                  className={`${css.input} ${css.inputEmail}`}
-                />
-                <label htmlFor="email" className={css.label}>
-                  Mail:
-                </label>
-                <ErrorMessage
-                  name="email"
-                  component="span"
-                  className={css.error}
-                />
-              </div>
-              <div className={css.field}>
-                <Field
-                  id="password"
-                  name="password"
-                  type={isHashed ? "password" : "text"}
-                  placeholder=" "
-                  className={[
-                    css.input,
-                    css.inputPassword,
-                    passError ? css.inputError : "",
-                    passSuccess ? css.inputSuccess : "",
-                  ].join(" ")}
-                />
-
-                <label htmlFor="password" className={css.label}>
-                  Password:
-                </label>
-
-                {passError && (
-                  <Icon
-                    name="error"
-                    className={css.statusIcon}
-                    width={20}
-                    height={20}
+      <div className={css.window}>
+        <Icon name="logo" className={css.icon} width={182} height={17} />
+        <Icon name="logo-mob" className={css.icon_mob} width={42} height={17} />
+        <h1 className={css.title}>
+          Expand your mind, reading{" "}
+          <span className={css.title_span}>a book</span>
+        </h1>
+        <Formik
+          initialValues={initialValues}
+          validationSchema={schema}
+          onSubmit={onSubmit}
+          validateOnBlur
+          validateOnChange
+        >
+          {({ isSubmitting, errors, touched }) => {
+            const passError = touched.password && !!errors.password;
+            const passSuccess = touched.password && !errors.password;
+            const showEyeToggle = !passError && !passSuccess;
+            return (
+              <Form className={css.form}>
+                <div className={css.field}>
+                  <Field
+                    id="name"
+                    name="name"
+                    placeholder=" "
+                    className={`${css.input} ${css.inputName}`}
                   />
-                )}
-                {passSuccess && (
-                  <Icon
-                    name="check"
-                    className={css.statusIcon}
-                    width={20}
-                    height={20}
+                  <label htmlFor="name" className={css.label}>
+                    Name:
+                  </label>
+                  <ErrorMessage
+                    name="name"
+                    component="span"
+                    className={css.error}
                   />
-                )}
+                </div>
 
-    {showEyeToggle && (
-                <button
-                  type="button"
-  className={css.password_toggle}
-                  onClick={() => setIsHashed((prev) => !prev)}
-                >
-                  <Icon
-                    name={isHashed ? "eye-off" : "eye"}
-                    width={20}
-                    height={20}
+                <div className={css.field}>
+                  <Field
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder=" "
+                    className={`${css.input} ${css.inputEmail}`}
                   />
-                </button>
-    )}
+                  <label htmlFor="email" className={css.label}>
+                    Mail:
+                  </label>
+                  <ErrorMessage
+                    name="email"
+                    component="span"
+                    className={css.error}
+                  />
+                </div>
+                <div className={css.field}>
+                  <Field
+                    id="password"
+                    name="password"
+                    type={isHashed ? "password" : "text"}
+                    placeholder=" "
+                    className={[
+                      css.input,
+                      css.inputPassword,
+                      passError ? css.inputError : "",
+                      passSuccess ? css.inputSuccess : "",
+                    ].join(" ")}
+                  />
 
-                <ErrorMessage
-                  name="password"
-                  component="span"
-                  className={css.error}
-                />
-              </div>
+                  <label htmlFor="password" className={css.label}>
+                    Password:
+                  </label>
 
-              <div className={css.buttons}>
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className={css.button}
-                >
-                  Registration
-                </button>
-                <Link className={css.link} to="/login">
-                  Already have an account?
-                </Link>
-              </div>
-            </Form>
-          );
-        }}
-      </Formik>
+                  {passError && (
+                    <Icon
+                      name="error"
+                      className={css.statusIcon}
+                      width={20}
+                      height={20}
+                    />
+                  )}
+                  {passSuccess && (
+                    <Icon
+                      name="check"
+                      className={css.statusIcon}
+                      width={20}
+                      height={20}
+                    />
+                  )}
+
+                  {showEyeToggle && (
+                    <button
+                      type="button"
+                      className={css.password_toggle}
+                      onClick={() => setIsHashed((prev) => !prev)}
+                    >
+                      <Icon
+                        name={isHashed ? "eye-off" : "eye"}
+                        width={20}
+                        height={20}
+                      />
+                    </button>
+                  )}
+
+                  <ErrorMessage
+                    name="password"
+                    component="span"
+                    className={css.error}
+                  />
+                </div>
+
+                <div className={css.buttons}>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={css.button}
+                  >
+                    Registration
+                  </button>
+                  <Link className={css.link} to="/login">
+                    Already have an account?
+                  </Link>
+                </div>
+              </Form>
+            );
+          }}
+        </Formik>
       </div>
       <div className={css.phone}>
         <Phone />
