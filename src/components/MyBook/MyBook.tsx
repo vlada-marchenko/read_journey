@@ -1,9 +1,9 @@
 import css from './MyBook.module.css'
-import type { MyBook } from '../../api/library'
+import type { Book } from '../../api/reading'
 import { toast } from 'react-toastify'
 
 type Props = {
-    book: MyBook
+    book: Book
     isReading: boolean
 }
 
@@ -14,10 +14,16 @@ export function MyBook({book, isReading}: Props) {
         return 
     }
 
+    const time = book.timeLeftToRead
+    const timeLeft = `${time?.hours} hours ${time?.minutes} minutes`
+
     return (
         <div className={css.container}>
             <div className={css.window}>
+                <div className={css.header}>
                 <h2 className={css.title}>My reading</h2>
+                {!isReading && time && <span className={css.time}>{timeLeft}</span>}
+                </div>
                 <div className={css.cover}>
                     <img className={css.image} src={book.imageUrl} alt="book cover" />
                     <h3 className={css.bookTitle}>{book.title}</h3>

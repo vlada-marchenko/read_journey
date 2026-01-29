@@ -1,5 +1,5 @@
 .container {
-      display: flex;
+  display: flex;
   justify-content: center;
   flex-direction: column;
   gap: 10px;
@@ -15,10 +15,9 @@
   border-radius: 30px;
   padding: 20px;
   display: flex;
-    flex-direction: column;
-    align-items: stretch;
+  flex-direction: column;
+  align-items: stretch;
 }
-
 
 .windowBook {
   width: 100%;
@@ -27,49 +26,48 @@
   border-radius: 30px;
   padding: 20px;
   display: flex;
-    flex-direction: column;
-    align-items: stretch;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 .title {
-font-weight: 700;
-font-size: 18px;
-line-height: 18px;
-color: #F9F9F9;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  color: #f9f9f9;
 }
 
 .text {
-font-weight: 500;
-font-size: 14px;
-line-height: 18px;
-color: #686868;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: #686868;
 }
 
 .circle {
   margin: 20px auto 0;
-width: 80px;
-height: 80px;
-background: #262626;
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: #262626;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .emojiiStar {
-font-weight: 500;
-font-size: 32px;
-line-height: 32px;
-line-height: 1;
-transform: translateY(2px);
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 32px;
+  line-height: 1;
+  transform: translateY(2px);
 }
 
 .backdrop {
   position: fixed;
   background: #14141499;
   inset: 0;
-    z-index: 2147483647;
-
+  z-index: 2147483647;
 }
 
 .modal {
@@ -108,35 +106,35 @@ transform: translateY(2px);
 }
 
 .emojii {
-font-weight: 500;
-font-size: 50px;
-line-height: 50px;
+  font-weight: 500;
+  font-size: 50px;
+  line-height: 50px;
 }
 
 .titleModal {
-font-weight: 700;
-font-size: 18px;
-line-height: 18px;
-text-align: center;
-color: #F9F9F9;
-margin-bottom: 0;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 18px;
+  text-align: center;
+  color: #f9f9f9;
+  margin-bottom: 0;
 }
 
 .textModal {
-font-weight: 500;
-font-size: 14px;
-line-height: 18px;
-text-align: center;
-color: #686868;
-margin-top: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  color: #686868;
+  margin-top: 8px;
 }
 
 .span {
-  color: #F9F9F9;
+  color: #f9f9f9;
 }
 
 @media (min-width: 768px) {
-    .window {
+  .window {
     max-width: 704px;
     display: flex;
     flex-direction: row;
@@ -147,45 +145,45 @@ margin-top: 8px;
     gap: 40px;
   }
 
-      .windowBook {
+  .windowBook {
     max-width: 704px;
     padding: 32px;
-    height: 518px;
+    min-height: 518px;
   }
 
-      .modal {
-  max-width: 342px;
-  height: 308px;
-}
+  .modal {
+    max-width: 342px;
+    height: 308px;
+  }
 
-.emojii {
-font-size: 68px;
-line-height: 70px;
-}
+  .emojii {
+    font-size: 68px;
+    line-height: 70px;
+  }
 
-.circle {
-  width: 100px;
-  height: 100px;
-  margin-top: 50px;
-  position: relative;
-}
+  .circle {
+    width: 100px;
+    height: 100px;
+    margin-top: 50px;
+    position: relative;
+  }
 
-.emojiiStar {
-  font-size: 50px;
-  line-height: 70px;
-  transform: translateY(6px);
-  position: absolute;
-}
+  .emojiiStar {
+    font-size: 50px;
+    line-height: 70px;
+    transform: translateY(6px);
+    position: absolute;
+  }
 
-.title {
-  font-size: 20px;
-line-height: 20px;
-margin-top: 5px;
-}
+  .title {
+    font-size: 20px;
+    line-height: 20px;
+    margin-top: 5px;
+  }
 }
 
 @media (min-width: 1440px) {
-    .window {
+  .window {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -194,7 +192,7 @@ margin-top: 5px;
     height: 651px;
   }
 
-    .container {
+  .container {
     flex-direction: row;
     align-items: flex-start;
     gap: 16px;
@@ -203,11 +201,12 @@ margin-top: 5px;
     padding: 0;
   }
 
-       .windowBook {
+  .windowBook {
     width: 100%;
     min-width: 857px;
     max-width: 857px;
     min-height: 651px;
+    max-height: 651px;
     padding-bottom: 28px;
   }
 }
