@@ -36,6 +36,17 @@
   font-display: swap;
 }
 
+#root {
+  isolation: isolate;
+  z-index: 1;
+}
+
+#modal-root {
+  position: relative;
+  z-index: 99999 !important;
+  isolation: isolate;
+}
+
 * {
   box-sizing: border-box;
 }

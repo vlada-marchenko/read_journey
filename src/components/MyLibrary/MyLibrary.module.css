@@ -43,6 +43,7 @@ font-size: 50px;
 line-height: 1;
 display: block;
 transform: translateY(7.5px);
+z-index: 0 !important;
 }
 
 .circle {
@@ -92,6 +93,11 @@ margin-top: 20px;
 row-gap: 20px;
 }
 
+.list > .item:only-child {
+  grid-column: 1 / -1;    
+  justify-self: center;    
+}
+
 .wrap {
     position: relative;
 }
@@ -113,6 +119,8 @@ white-space: nowrap;
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  z-index: 0 !important;
+  position: relative;
 }
 
 .options {
@@ -124,6 +132,7 @@ height: 113px;;
 background: #262626;
 border-radius: 12px;
 padding: 14px;
+z-index: 0 !important;
 }
 
 .option {
@@ -217,6 +226,8 @@ justify-content: center;
   position: fixed;
   background: #14141499;
   inset: 0;
+    z-index: 2147483647;
+
 }
 
 .modal {
@@ -225,7 +236,7 @@ justify-content: center;
   left: 50%;
   transform: translate(-50%, -50%);
   background: #1f1f1f;
-  z-index: 1000;
+  z-index: 2147483647;
   width: 100%;
   max-width: 335px;
   border: 1px solid rgba(104, 104, 104, 0.2);

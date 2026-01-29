@@ -9,6 +9,7 @@ import Icon from "../Icon/Icon";
 import ClipLoader from "react-spinners/ClipLoader";
 import { getMyBooks } from "../../api/library";
 import { toast } from "react-toastify";
+import { createPortal } from "react-dom";
 
 type Filters = {
   title: string;
@@ -291,7 +292,7 @@ export function RecommendedBooks({
           {isLoading && <Loader />}
           {variant === "library" && footer}
 
-          {isModalOpen && selectedBook && (
+          {isModalOpen && selectedBook && createPortal(
             <div
               className={css.backdrop}
               onClick={(e) => {
@@ -334,7 +335,7 @@ export function RecommendedBooks({
                   </button>
                 </div>
               </div>
-            </div>
+            </div>, document.getElementById('modal-root')!
           )}
         </div>
       </div>

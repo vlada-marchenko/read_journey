@@ -132,7 +132,7 @@ export default function MyLibrary() {
           </div>
         </div>
       </div>,
-      document.body,
+      document.getElementById('modal-root')!,
     );
 
   return (
