@@ -1,75 +1,113 @@
-# React + TypeScript + Vite
+# Read Journey 📚
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## About the project
+**Read Journey** is a web app for tracking your reading progress.  
+A user can:
+- browse **Recommended** books (from the backend),
+- add books to **My Library**,
+- start/stop reading on the **Reading page**,
+- view reading history as a **Diary** (reading sessions by date),
+- view progress as **Statistics** (progress chart/ring).
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Main features
 
-## React Compiler
+### Recommended
+- Fetch recommended books from the backend (with pagination).
+- Open a modal with book details.
+- Add a book to **My Library** (**Add to my library** button).
+- Handle backend errors using toast notifications (including duplicates like **409 Conflict**).
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### My Library
+- Display the user’s saved books.
+- Delete a book from the library.
+- Open a modal with book details.
+- Filter books by reading status (if required by the spec).
 
-Note: This will impact Vite dev & build performances.
+### Reading page
+The Reading page contains:
+- **AddReading** — a form with 1 input and a submit button:
+  - **"To start"** — start reading from page `page`
+  - **"To stop"** — stop reading at page `page`
+  - all form values are validated (yup)
+  - backend errors are shown as notifications (toast)
+- **MyBook** — book block + reading status indicator:
+  - after a successful `start`, the indicator shows the book is “in progress”
+- **Details** — detailed reading information:
+  - **Diary** or **Statistics** (toggle switch)
 
-## Expanding the ESLint configuration
+#### “Book finished” logic
+After clicking **To stop**, if `stopPage === totalPages`, a “book finished” modal is opened.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Details: Diary / Statistics
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Diary
+Shows reading sessions grouped by date. Each record includes:
+- date
+- pages read
+- reading time (minutes)
+- percent of the book
+- reading speed (calculated on the backend)
+- delete button (sends a request to remove the reading event)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+### Statistics
+Shows book progress as a chart (progress ring):
+- total percent read
+- total pages read
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Tech stack
+- **React**
+- **TypeScript**
+- **Vite**
+- **React Router**
+- **Axios** (API requests)
+- **CSS Modules**
+- **react-toastify** (notifications/toasts)
+- **yup** (form validation)
+- **react-spinners** (loader)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+---
+
+## API / Backend
+The project uses the ReadJourney API (GoIT backend). Main requests:
+- recommended books (fetch list, add to library)
+- my library (fetch list, delete book)
+- reading (get book, start reading, stop reading, delete reading event)
+
+---
+
+## Design (Mockup)
+The UI is implemented according to the provided design:
+- responsive layout (Mobile / Tablet / Desktop)
+- modals for book details and “book finished”
+- Diary / Statistics toggle
+
+> If you have a Figma link, add it here: `Figma link: ...`
+
+---
+
+## Specification (Summary)
+Implemented requirements include:
+- Dashboard is a reusable wrapper component (content depends on the page)
+- Reading page includes AddReading, MyBook, Details
+- AddReading: 1 input + submit button (“To start” / “To stop”)
+- validation + backend error handling via notifications
+- after stop, Details data updates (speed/progress from backend)
+- if the book is finished → show “book finished” modal
+- Details has two modes: Diary and Statistics
+- Diary: reading events by date + ability to delete an event
+- Statistics: progress visualization (chart/ring)
+
+---
+
+## Run locally
+
+1) Clone:
+```bash
+git clone https://github.com/vlada-marchenko/read_journey.git
+cd read_journey
