@@ -6,7 +6,10 @@
   align-items: center;
   width: 100%;
   align-self: stretch;
+  max-width: 100%;
+  box-sizing: border-box;
 }
+
 
 .loader {
   position: absolute;
@@ -16,7 +19,8 @@
 }
 
 .window {
-  width: min(335px, 100%);
+  width: 100%;
+  max-width: 335px;
   margin: 0 auto;
   background: #1f1f1f;
   border-radius: 30px;
@@ -229,8 +233,9 @@ img {
   margin-top: 20px;
 }
 
-.windowLibrary {
-  width: 295px;
+ .windowLibrary {
+  width: 100%;
+  max-width: 295px;
   height: 244px;
   background: #262626;
   border-radius: 12px;

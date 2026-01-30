@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 20px 16px;
+  padding: 20px 0;
 }
 
 .name {
@@ -214,15 +214,6 @@
 }
 
 @media (min-width: 1440px) {
-  /* .icon_mob {
-    display: none;
-}
-
-.icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-} */
 
   .container {
     padding: 32px 16px 18px;
@@ -250,6 +241,5 @@
 
   .window {
     max-width: 1214px;
-    /* padding: 28px 16px; */
   }
 }

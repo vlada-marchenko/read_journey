@@ -101,9 +101,6 @@ export default function AddBook() {
 
   return (
     <div className={css.page}>
-    <div className={css.container}>
-      <div className={css.window}>
-        <div className={css.dashboard}>
           <span className={css.span}>Create your libary:</span>
           <form action="submit" className={css.form} onSubmit={onSubmit}>
             <div className={css.field}>
@@ -146,7 +143,6 @@ export default function AddBook() {
               Add book
             </button>
           </form>
-        </div> </div> </div>
 
         {isModalOpen && (
           <div className={css.backdrop} onClick={() => setIsModalOpen(false)} aria-modal="true" role="dialog">

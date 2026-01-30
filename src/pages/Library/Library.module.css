@@ -26,6 +26,10 @@
   align-self: stretch;
 }
 
+.recommended {
+  width: 100%;
+}
+
 .window {
   width: 100%;
   max-width: 335px;
