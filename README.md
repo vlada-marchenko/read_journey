@@ -87,8 +87,6 @@ The UI is implemented according to the provided design:
 - modals for book details and “book finished”
 - Diary / Statistics toggle
 
-> If you have a Figma link, add it here: `Figma link: ...`
-
 ---
 
 ## Specification (Summary)
@@ -102,12 +100,3 @@ Implemented requirements include:
 - Details has two modes: Diary and Statistics
 - Diary: reading events by date + ability to delete an event
 - Statistics: progress visualization (chart/ring)
-
----
-
-## Run locally
-
-1) Clone:
-```bash
-git clone https://github.com/vlada-marchenko/read_journey.git
-cd read_journey
