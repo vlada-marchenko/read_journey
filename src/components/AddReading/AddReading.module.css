@@ -1,4 +1,10 @@
+.container {
+  width: 100%;
+}
 
+.window {
+  width: 100%;
+}
 
 .form {
   display: flex !important;

@@ -290,6 +290,7 @@ img {
     align-items: stretch;
     background: #262626;
     border-radius: 12px;
+    margin: 0;
   }
 
   .title {

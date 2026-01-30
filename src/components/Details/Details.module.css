@@ -319,6 +319,10 @@ line-height: 20px;
 }
 
 @media (min-width: 768px) {
+ .window {
+  width: 321px;
+ }
+
   .header {
     margin-bottom: 15px;
     margin-top: 0;
@@ -339,6 +343,6 @@ line-height: 20px;
     flex-direction: column;
     align-items: stretch;
     justify-content: start;
-    width: 335px;
+    max-width: 335px ;
   }
 }

@@ -49,6 +49,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 32px;
+    gap: 20px;
   }
 }
 
@@ -59,6 +60,7 @@
     align-items: center;
     max-width: 335px;
     height: 651px;
+    padding: 20px;
   }
 
   .container {
