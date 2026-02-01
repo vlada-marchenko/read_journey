@@ -75,6 +75,7 @@ export function Login() {
           const showEyeToggle = !passError && !passSuccess
           return (
             <Form className={css.form}>
+              <div className={css.inputs}>
               <div className={css.field}>
                 <Field
                   id="email"
@@ -146,6 +147,7 @@ className={css.password_toggle}
                   component="span"
                   className={css.error}
                 />
+              </div>
               </div>
 
               <div className={css.buttons}>

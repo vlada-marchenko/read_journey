@@ -80,6 +80,7 @@ export function Registration() {
             const showEyeToggle = !passError && !passSuccess;
             return (
               <Form className={css.form}>
+              <div className={css.inputs}>
                 <div className={css.field}>
                   <Field
                     id="name"
@@ -168,6 +169,7 @@ export function Registration() {
                     component="span"
                     className={css.error}
                   />
+                </div>
                 </div>
 
                 <div className={css.buttons}>

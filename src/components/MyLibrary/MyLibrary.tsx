@@ -10,6 +10,7 @@ import {
   type ReadingStatus,
 } from "../../api/library";
 import type { MyBook } from "../../api/library";
+import cover from "../../assets/cover.png";
 
 const options = ["Unread", "In progress", "Done", "All books"] as const;
 type Option = (typeof options)[number];
@@ -114,9 +115,12 @@ export default function MyLibrary() {
           <div className={css.modalContent}>
             <div className={css.modalItem}>
               <img
-                src={selectedBook.imageUrl}
-                alt={selectedBook.title}
+                src={selectedBook.imageUrl || cover}
+                alt={selectedBook.title }
                 className={css.modalImage}
+                onError={(e) => {
+                  e.currentTarget.src = cover;
+                }}
               />
               <h3 className={css.bookTitleModal}>{selectedBook.title}</h3>
               <p className={css.bookAuthor}>{selectedBook.author}</p>
@@ -132,7 +136,7 @@ export default function MyLibrary() {
           </div>
         </div>
       </div>,
-      document.getElementById('modal-root')!,
+      document.getElementById("modal-root")!,
     );
 
   return (
@@ -177,8 +181,11 @@ export default function MyLibrary() {
                 >
                   <img
                     className={css.image}
-                    src={book.imageUrl}
+                    src={book.imageUrl || cover}
                     alt="book cover"
+                    onError={(e) => {
+                      e.currentTarget.src = cover;
+                    }}
                   />
                 </button>
                 <div className={css.bookInfo}>

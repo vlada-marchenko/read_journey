@@ -46,6 +46,14 @@
   gap: 8px;
 }
 
+.inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
 .input {
   width: 100%;
   height: 44px;
@@ -219,6 +227,10 @@
     align-items: start;
   }
 
+  .inputs {
+    gap: 14px;
+  }
+
   .input {
     width: 472px;
     height: 50px;
@@ -277,6 +289,9 @@
     max-width: 600px;
     height: 736px;
     padding: 40px 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .input:last-child {
@@ -284,7 +299,7 @@
   }
 
   .title {
-    margin-top: 107px;
+    margin-top: 0;
     font-weight: 700;
     font-style: Bold;
     font-size: 64px;
@@ -292,8 +307,12 @@
     letter-spacing: 2%;
   }
 
+  .form {
+    margin-top: 0;
+  }
+
   .buttons {
-    margin-top: 130px;
+    margin-top: 0;
   }
 
   .phone {
@@ -307,5 +326,9 @@
 
   .statusIcon {
     right: 20px;
+  }
+
+  .inputs {
+    margin-bottom: 70px;
   }
 }

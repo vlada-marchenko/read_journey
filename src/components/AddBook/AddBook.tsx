@@ -33,14 +33,13 @@ export default function AddBook() {
   const [author, setAuthor] = useState("");
   const [pages, setPages] = useState("");
   const [, setIsSubmitting] = useState(false);
+  const [, setErrors] = useState<FormErrors>({});
 
   type FormErrors = {
     title?: string;
     author?: string;
     pages?: string;
   };
-
-  const [, setErrors] = useState<FormErrors>({});
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [, setCreated] = useState<{ title: string; author: string; pages?: number} | null>(null)  
@@ -64,6 +63,8 @@ export default function AddBook() {
         author: validated.author.trim(),
         totalPages: validated.pages
       })
+
+      window.dispatchEvent(new Event("library:changed"));
 
       setCreated({ title: validated.title.trim(), author: validated.author.trim(), pages: validated.pages })
       setIsModalOpen(true)
